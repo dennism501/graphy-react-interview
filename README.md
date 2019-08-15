@@ -9,14 +9,17 @@
 * Start local dev server: Run `yarn run dev` or `npm run dev`
 * Visit site: Open [http://localhost:8080]()
 
+### Features
+
+Annotation library. Adds ability to place markers
 
 ### Limitations
 
-* Does not handle browser resizing
+* Does not handle browser resizing.
 
 ### Data Structure
 
-I am storing an object of the annotations, which contains the x/y of the original click, which is where I add the marker
+I am storing an object of the annotation objects, which contains the x/y of the original click, which is where I add the marker
 Using an object of annotations instead of array for ease of access, since the order of markers don't matter.
 
 Data structure for an Annotation:
@@ -38,7 +41,7 @@ type Annotation {
 
 ### Persistence
 
-The annotations do not persist between page loads. The assumption being is that in the real world, there would be an API to save these
+The annotations do not persist between page loads. The assumption being is that in the real world, there would be an API to save them for retrieval later
 
 ### Points to Address
 
