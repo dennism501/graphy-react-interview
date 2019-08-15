@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { findIndex, get, find, uniqueId } from 'lodash'
+import { reject, uniqueId } from 'lodash'
 
 import Marker, { MARKER_SIZE } from './marker'
 import Tooltip from './tooltip'
@@ -88,6 +88,20 @@ class Annotations extends React.Component {
     })
   }
 
+  handleDeleteAnnotation(ev, id) {
+    ev.stopPropagation()
+
+    // Delete the annotation by ID
+    const annotationStore = reject(
+      this.state.annotationStore,
+      annotation => annotation.id === id
+    )
+
+    this.setState({
+      annotationStore,
+    })
+  }
+
   render() {
     const { annotationStore } = this.state
 
@@ -106,6 +120,12 @@ class Annotations extends React.Component {
             {isOpen && (
               <Tooltip x={x} y={y}>
                 {content}
+                <button
+                  type='button'
+                  onClick={ev => this.handleDeleteAnnotation(ev, id)}
+                >
+                  delete
+                </button>
               </Tooltip>
             )}
           </Annotation>
