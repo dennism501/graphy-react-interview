@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import { reject, uniqueId } from 'lodash'
 
 import Marker, { MARKER_SIZE } from './marker'
+const ANNOTATION_SPACING = 5
+
 import Tooltip from './tooltip'
 
 const ID_PREFIX = 'annotation_'
@@ -18,11 +20,20 @@ const Container = styled.div`
 
 const Annotation = styled.div`
   position: absolute;
-  top: ${props => props.y - MARKER_SIZE / 2}px;
-  left: ${props => props.x - MARKER_SIZE / 2}px;
+  /* Centering the marker position to the initial click. */
+  top: ${props => props.y - MARKER_SIZE / 2 - ANNOTATION_SPACING}px;
+  left: ${props => props.x - MARKER_SIZE / 2 - ANNOTATION_SPACING}px;
 
-  /* Adding margin so there is a small window outside the annotation where it won't hide */
-  margin: 5px;
+  /* Adding spacing so there is a small window outside the annotation where it won't hide */
+  padding: ${ANNOTATION_SPACING}px;
+`
+
+const DeleteButton = styled.button`
+  cursor: pointer;
+  border: 0;
+  background: red;
+  color: #fff;
+  font-weight: bold;
 `
 
 class Annotations extends React.Component {
@@ -118,12 +129,12 @@ class Annotations extends React.Component {
             {isOpen && (
               <Tooltip x={x} y={y}>
                 {content}
-                <button
+                <DeleteButton
                   type='button'
                   onClick={ev => this.handleDeleteAnnotation(ev, id)}
                 >
                   delete
-                </button>
+                </DeleteButton>
               </Tooltip>
             )}
           </Annotation>
