@@ -5,8 +5,7 @@ import { reject, uniqueId } from 'lodash'
 import Marker, { MARKER_SIZE } from './marker'
 import Tooltip from './tooltip'
 
-// do your magic here 👇
-// 😎
+const ID_PREFIX = 'annotation_'
 
 const Container = styled.div`
   width: 100vw;
@@ -40,7 +39,7 @@ class Annotations extends React.Component {
   handleSelection(ev) {
     const { pageX: x, pageY: y } = ev
 
-    const id = uniqueId()
+    const id = uniqueId(ID_PREFIX)
 
     this.setState({
       annotationStore: {
@@ -92,10 +91,9 @@ class Annotations extends React.Component {
     ev.stopPropagation()
 
     // Delete the annotation by ID
-    const annotationStore = reject(
-      this.state.annotationStore,
-      annotation => annotation.id === id
-    )
+    const annotationStore = { ...this.state.annotationStore }
+
+    delete annotationStore[id]
 
     this.setState({
       annotationStore,
@@ -112,7 +110,7 @@ class Annotations extends React.Component {
             key={`marker-${id}`}
             x={x}
             y={y}
-            id={id}
+            annotationId={id}
             onMouseEnter={() => this.handleAnnotationHoverEnter(id)}
             onMouseLeave={() => this.handleAnnotationHoverExit(id)}
           >
