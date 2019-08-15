@@ -12,12 +12,18 @@ const Container = styled.div`
   width: 100vw;
   height: 100vh;
   background: palegreen;
+
+  /* Using this so */
+  position: relative;
 `
 
 const Annotation = styled.div`
   position: absolute;
   top: ${props => props.y - MARKER_SIZE / 2}px;
   left: ${props => props.x - MARKER_SIZE / 2}px;
+
+  /* Adding margin so there is a small window outside the annotation where it won't hide */
+  margin: 5px;
 `
 
 class Annotations extends React.Component {
@@ -29,7 +35,6 @@ class Annotations extends React.Component {
     }
 
     this.handleSelection = this.handleSelection.bind(this)
-    this.handleMarkerClick = this.handleMarkerClick.bind(this)
   }
 
   handleSelection(ev) {
@@ -51,25 +56,35 @@ class Annotations extends React.Component {
     })
   }
 
-  handleMarkerClick(ev, id) {
-    // Make sure we don't trigger any other events (i.e.)
-    ev.stopPropagation()
-
+  handleAnnotationHoverEnter(id) {
     const annotation = this.state.annotationStore[id]
 
-    // There isn't a corresponding annotation, so we cannot continue
-    if (!annotation) return
+    // We don't need to do anything if the annotation's tooltip tooltip is already open
+    if (annotation.isOpen === true) return
 
-    // If the annotation is open, close it, and vice-versa
-    if (annotation.isOpen) {
-      annotation.isOpen = false
-    } else {
-      annotation.isOpen = true
-    }
+    annotation.isOpen = true
 
     this.setState({
-      ...this.state.annotationStore,
-      [id]: annotation,
+      annotationStore: {
+        ...this.state.annotationStore,
+        [id]: annotation,
+      },
+    })
+  }
+
+  handleAnnotationHoverExit(id) {
+    const annotation = this.state.annotationStore[id]
+
+    // We don't need to do anything if the annotation's tooltip is already closed
+    if (annotation.isOpen === false) return
+
+    annotation.isOpen = false
+
+    this.setState({
+      annotationStore: {
+        ...this.state.annotationStore,
+        [id]: annotation,
+      },
     })
   }
 
@@ -79,12 +94,15 @@ class Annotations extends React.Component {
     return (
       <Container onClick={this.handleSelection}>
         {Object.values(annotationStore).map(({ x, y, isOpen, id, content }) => (
-          <Annotation key={`marker-${id}`} x={x} y={y} id={id}>
-            <Marker
-              x={x}
-              y={y}
-              onClick={ev => this.handleMarkerClick(ev, id)}
-            />
+          <Annotation
+            key={`marker-${id}`}
+            x={x}
+            y={y}
+            id={id}
+            onMouseEnter={() => this.handleAnnotationHoverEnter(id)}
+            onMouseLeave={() => this.handleAnnotationHoverExit(id)}
+          >
+            <Marker x={x} y={y} />
             {isOpen && (
               <Tooltip x={x} y={y}>
                 {content}
