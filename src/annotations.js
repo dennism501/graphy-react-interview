@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { findIndex, get, find, uniqueId } from 'lodash'
 
-import Marker from './marker'
+import Marker, { MARKER_SIZE } from './marker'
 import Tooltip from './tooltip'
 
 // do your magic here 👇
@@ -12,6 +12,12 @@ const Container = styled.div`
   width: 100vw;
   height: 100vh;
   background: palegreen;
+`
+
+const Annotation = styled.div`
+  position: absolute;
+  top: ${props => props.y - MARKER_SIZE / 2}px;
+  left: ${props => props.x - MARKER_SIZE / 2}px;
 `
 
 class Annotations extends React.Component {
@@ -73,7 +79,7 @@ class Annotations extends React.Component {
     return (
       <Container onClick={this.handleSelection}>
         {Object.values(annotationStore).map(({ x, y, isOpen, id, content }) => (
-          <React.Fragment key={`marker-${id}`}>
+          <Annotation key={`marker-${id}`} x={x} y={y} id={id}>
             <Marker
               x={x}
               y={y}
@@ -84,7 +90,7 @@ class Annotations extends React.Component {
                 {content}
               </Tooltip>
             )}
-          </React.Fragment>
+          </Annotation>
         ))}
       </Container>
     )
