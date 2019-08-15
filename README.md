@@ -9,6 +9,11 @@
 * Start local dev server: Run `yarn run dev` or `npm run dev`
 * Visit site: Open [http://localhost:8080]()
 
+
+### Limitations
+
+* Does not handle browser resizing
+
 ### Data Structure
 
 I am storing an array of the annotations, which contains the x/y of the original click, which is where I add the marker
