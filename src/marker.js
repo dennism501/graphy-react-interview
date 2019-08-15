@@ -12,6 +12,7 @@ const Marker = styled.div`
   position: relative;
   width: ${MARKER_SIZE}px;
   height: ${MARKER_SIZE}px;
+  z-index: 1;
 
   &:hover {
     border: 2px solid blue;

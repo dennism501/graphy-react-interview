@@ -16,6 +16,7 @@ const Tooltip = styled.div`
   margin-left: 5px;
   top: -${MARKER_SIZE}px;
   left: ${MARKER_SIZE}px;
+  z-index: 2;
 `
 
 export default Tooltip
