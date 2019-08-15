@@ -19,8 +19,7 @@ class Annotations extends React.Component {
     super(props)
 
     this.state = {
-      annotationStore: [],
-      currentId: 0,
+      annotationStore: {},
     }
 
     this.handleSelection = this.handleSelection.bind(this)
@@ -30,17 +29,19 @@ class Annotations extends React.Component {
   handleSelection(ev) {
     const { pageX: x, pageY: y } = ev
 
+    const id = uniqueId()
+
     this.setState({
-      annotationStore: [
+      annotationStore: {
         ...this.state.annotationStore,
-        {
+        [id]: {
           x,
           y,
           isOpen: true,
-          id: this.state.currentId++,
+          id,
           content: 'Some string',
         },
-      ],
+      },
     })
   }
 
@@ -48,19 +49,7 @@ class Annotations extends React.Component {
     // Make sure we don't trigger any other events (i.e.)
     ev.stopPropagation()
 
-    // We need to index so that we can
-    const annotationIndex = findIndex(
-      this.state.annotationStore,
-      annotation => annotation.id === id
-    )
-
-    const annotation = this.state.annotationStore[annotationIndex]
-
-    debugger
-
-    // if (annotationIndex === -1)
-
-    // const annotation = get(this.state.annotationStore, annotationIndex)
+    const annotation = this.state.annotationStore[id]
 
     // There isn't a corresponding annotation, so we cannot continue
     if (!annotation) return
@@ -73,7 +62,8 @@ class Annotations extends React.Component {
     }
 
     this.setState({
-      anno,
+      ...this.state.annotationStore,
+      [id]: annotation,
     })
   }
 
@@ -82,7 +72,7 @@ class Annotations extends React.Component {
 
     return (
       <Container onClick={this.handleSelection}>
-        {annotationStore.map(({ x, y, isOpen, id, content }) => (
+        {Object.values(annotationStore).map(({ x, y, isOpen, id, content }) => (
           <React.Fragment key={`marker-${id}`}>
             <Marker
               x={x}

@@ -16,7 +16,8 @@
 
 ### Data Structure
 
-I am storing an array of the annotations, which contains the x/y of the original click, which is where I add the marker
+I am storing an object of the annotations, which contains the x/y of the original click, which is where I add the marker
+Using an object of annotations instead of array for ease of access, since the order of markers don't matter.
 
 Data structure for an Annotation:
 
