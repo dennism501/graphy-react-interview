@@ -9,11 +9,15 @@ Place Annotations anywhere!
 ### Features
 
 Supports ability to place annotations anywhere on the page.
+Upon creation of an annotation, a marker is placed where the user clicked to indicate the position of the annotation
 Supports ability to delete a previously placed annotation
 Supports ability to edit a previously placed annotation
 Shows/hides annotation on hover (intuitively doesn't hide when a user is editing the contents of the annotation)
+Mobile friendly (tested on iOS Safari on an iPhone 7 plus)
 
-With a somewhat naive approach, I have tried to address markers that are close to each other with layering:
+Markers in close proximity work:
+
+With a somewhat naive approach, I have tried to address usage of markers that are close to each other with layering.
 
 On hover, I set the z-index of the marker to a higher value than the normal marker, which makes a marker that's underneath
 an overlapping marker appear on top of the sibling marker.
