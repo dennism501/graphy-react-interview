@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
-export const MARKER_SIZE = 10
-export const MARKER_BORDER_SIZE = 1
+export const MARKER_SIZE = 25
+export const MARKER_BORDER_SIZE = 2
 
 const Marker = styled.div`
   background: #fff;
