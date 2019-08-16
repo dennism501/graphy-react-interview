@@ -43,6 +43,8 @@ const AnnotationEditor = styled.textarea`
   margin: 1px;
 `
 
+const AnnotationContent = styled.div``
+
 // Add tests for:
 // Container click click (a marker should be created)
 // hover over created marker (should show tooltip)
@@ -191,7 +193,7 @@ class Annotations extends React.Component {
             >
               <Marker x={x} y={y} />
               {isOpen && (
-                <Tooltip x={x} y={y}>
+                <Tooltip x={x} y={y} onClick={this.handleEditClick(id)}>
                   {isEditing && (
                     <AnnotationEditor
                       autoFocus
@@ -200,14 +202,15 @@ class Annotations extends React.Component {
                       onBlur={this.handleEditBlur(id)}
                     />
                   )}
-                  {!isEditing && content}
+                  {!isEditing && (
+                    <AnnotationContent>{content}</AnnotationContent>
+                  )}
                   <DeleteButton
                     type='button'
                     onClick={this.handleDeleteAnnotation(id)}
                   >
                     delete
                   </DeleteButton>
-                  <SaveButton>save</SaveButton>
                 </Tooltip>
               )}
             </Annotation>
