@@ -6,17 +6,6 @@ Place Annotations anywhere!
 
 [See online here](https://graphy-react-interview.scottwarren.dev/)
 
-### Local setup
-
-* Clone repository
-* Install dependencies: Run `yarn` or `npm install`
-* Start local dev server: Run `yarn run dev` or `npm run dev`
-* Visit site: Open [http://localhost:8080]()
-
-### Testing
-
-Run using `yarn run test` or `npm run test`
-
 ### Features
 
 Supports ability to place annotations anywhere on the page.
@@ -35,10 +24,28 @@ an overlapping marker appear on top of the sibling marker.
 * Would like to make this more re-usable, where you would add the annotations component as a child of a block element that
   you want to be able to add annotations to, and it would work. You'd be able to only add annotations within the bounds
   of that element, and it would be self contain all of the annotations.
+* Does no collision testing currently (i.e. if an annotation is outside of the contents of the body, we should display it in a different way)
+
+### The Future/If I had more time
+
+If given more time, or this was something I was developing for work I would use an external library where possible (Annotations, Tooltips, etc). If using a library remains off the table, I would likely investigate solutions on the market to see what things I can learn from (including but not limited to the API usage, the style choices, the overall UX of the annotations, etc).
+
+I would love to get this in front of a user so confirm the UX of editing/deleting/usage. I would test more with graphs and "real world" use cases. I would definitely add more tests, and very likely try and componentise the annotations component in a more re-usable way.
+
+### Local setup
+
+* Clone repository
+* Install dependencies: Run `yarn` or `npm install`
+* Start local dev server: Run `yarn run dev` or `npm run dev`
+* Visit site: Open [http://localhost:8080]()
+
+### Testing
+
+Run using `yarn run test` or `npm run test`
 
 ### Data Structure
 
-I am storing an object of the annotation objects, which contains the x/y of the original click, which is where I add the marker
+I am storing an object of the annotation objects (where the key is a unique ID), which contains the x/y of the original click, which is where I add the marker
 Using an object of annotations instead of array for ease of access, since the order of markers don't matter.
 
 Data structure for an Annotation:
