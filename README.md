@@ -25,6 +25,9 @@ an overlapping marker appear on top of the sibling marker.
 ### Limitations
 
 * Does not handle browser resizing.
+* Would like to make this more re-usable, where you would add the annotations component as a child of a block element that
+  you want to be able to add annotations to, and it would work. You'd be able to only add annotations within the bounds
+  of that element, and it would be self contain all of the annotations.
 
 ### Data Structure
 
@@ -45,6 +48,8 @@ type Annotation {
   id: int,
   // Content of the Annotation. For now this is a simple string, but ideally would be rich text (i.e. Markdown)
   content: string,
+  // Is the user editing the annotation note
+  isEditing: Boolean,
 }
 ```
 
