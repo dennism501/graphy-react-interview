@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { uniqueId } from 'lodash'
 
 import Marker from './marker'
@@ -33,10 +33,18 @@ const AnnotationEditor = styled.textarea`
   padding: 0;
   margin: 0;
   flex-grow: 1;
+  border-radius: 3px;
+  border: 1px solid #222;
 `
 
 const AnnotationContent = styled.div`
   flex-grow: 1;
+  ${props =>
+    !props.content &&
+    css`
+      font-size: 0.75em;
+      color: grey;
+    `}
 `
 
 // Add tests for:
@@ -61,8 +69,6 @@ class Annotations extends React.Component {
       annotationStore: {},
       isCurrentlyEditing: false,
     }
-
-    // this.handleSelection = this.handleSelection.bind(this)
   }
 
   handleSelection = ev => {
@@ -208,7 +214,9 @@ class Annotations extends React.Component {
                     />
                   )}
                   {!isEditing && (
-                    <AnnotationContent>{content}</AnnotationContent>
+                    <AnnotationContent content={content}>
+                      {content ? content : 'Click to edit'}
+                    </AnnotationContent>
                   )}
                   <DeleteButton
                     type='button'
