@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 import { MARKER_SIZE } from './marker'
 
-const TOOLTIP_SIZE = 100
+const TOOLTIP_SIZE = 125
 
 const Tooltip = styled.div`
   position: relative;
@@ -10,14 +10,17 @@ const Tooltip = styled.div`
   border: 1px solid #333;
   border-radius: 2px;
   padding: 5px;
-
   width: ${TOOLTIP_SIZE}px;
-  height: ${TOOLTIP_SIZE}px;
+  min-width: ${TOOLTIP_SIZE}px;
+  max-width: ${TOOLTIP_SIZE * 2}px;
+  min-height: ${TOOLTIP_SIZE}px;
+  max-height: ${TOOLTIP_SIZE * 2}px;
   margin-left: 5px;
   top: -${MARKER_SIZE}px;
   left: ${MARKER_SIZE}px;
-  z-index: 1;
   cursor: text;
+  overflow: hidden;
+  text-overflow: ellipsis;
 
   opacity: 0.8;
   transition: opacity 0.25s ease-in-out;
