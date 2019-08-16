@@ -9,6 +9,7 @@ const Tooltip = styled.div`
   background: white;
   border: 1px solid #333;
   border-radius: 2px;
+  padding: 5px;
 
   width: ${TOOLTIP_SIZE}px;
   height: ${TOOLTIP_SIZE}px;
@@ -24,6 +25,9 @@ const Tooltip = styled.div`
   &:hover {
     opacity: 1;
   }
+
+  display: flex;
+  flex-direction: column;
 `
 
 export default Tooltip

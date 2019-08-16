@@ -15,6 +15,9 @@ const Annotation = styled.div`
 
   /* Adding spacing so there is a small window outside the annotation where it won't hide */
   padding: ${ANNOTATION_SPACING}px;
+
+  display: flex;
+  flex-direction: column;
 `
 
 export default Annotation

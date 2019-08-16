@@ -17,9 +17,6 @@ const Container = styled.div`
   width: 100vw;
   height: 100vh;
   background: palegreen;
-
-  /* Using this so */
-  position: relative;
 `
 
 const DeleteButton = styled.button`
@@ -28,16 +25,19 @@ const DeleteButton = styled.button`
   background: red;
   color: #fff;
   font-weight: bold;
+  margin-top: 5px;
 `
 
 const AnnotationEditor = styled.textarea`
   width: 100%;
-  margin: 0;
   padding: 0;
-  margin: 1px;
+  margin: 0;
+  flex-grow: 1;
 `
 
-const AnnotationContent = styled.div``
+const AnnotationContent = styled.div`
+  flex-grow: 1;
+`
 
 // Add tests for:
 // Container click click (a marker should be created)
@@ -202,6 +202,7 @@ class Annotations extends React.Component {
                     <AnnotationEditor
                       autoFocus
                       defaultValue={content}
+                      placeholder='Enter annotation here...'
                       onClick={this.handleEditClick(id)}
                       onBlur={this.handleEditBlur(id)}
                     />
