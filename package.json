@@ -1,5 +1,6 @@
 {
-  "name": "@graphyapp/react-challenge",
+  "name": "graphy-react-challenge",
+  "homepage": "https://graphy-react-interview.scottwarren.dev",
   "version": "0.1.0",
   "license": "UNLICENSED",
   "private": true,
