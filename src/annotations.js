@@ -30,12 +30,6 @@ const DeleteButton = styled.button`
   font-weight: bold;
 `
 
-const SaveButton = styled.button`
-  cursor: pointer;
-  border: 0;
-  font-weight: bold;
-`
-
 const AnnotationEditor = styled.textarea`
   width: 100%;
   margin: 0;
