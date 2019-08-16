@@ -2,6 +2,10 @@
 
 # Graphy Annotate
 
+Place Annotations anywhere!
+
+[See online here](https://graphy-react-interview.scottwarren.dev/)
+
 ### Local setup
 
 * Clone repository
@@ -15,7 +19,10 @@ Run using `yarn run test` or `npm run test`
 
 ### Features
 
-Annotation library. Adds ability to place markers.
+Supports ability to place annotations anywhere on the page.
+Supports ability to delete a previously placed annotation
+Supports ability to edit a previously placed annotation
+Shows/hides annotation on hover (intuitively doesn't hide when a user is editing the contents of the annotation)
 
 With a somewhat naive approach, I have tried to address markers that are close to each other with layering:
 
