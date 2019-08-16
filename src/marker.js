@@ -1,22 +1,27 @@
 import React from 'react'
 import styled from 'styled-components'
 
-export const MARKER_SIZE = 30
+export const MARKER_SIZE = 10
+export const MARKER_BORDER_SIZE = 1
 
 const Marker = styled.div`
-  background: red;
+  background: #fff;
 
-  // /* The location of the middle of the marker should be where the user clicked */
-  // top: -${MARKER_SIZE / 2}px;
-  // left: ${props => props.x - MARKER_SIZE / 2}px;
   position: relative;
   width: ${MARKER_SIZE}px;
   height: ${MARKER_SIZE}px;
+  border-radius: ${MARKER_SIZE}px;
+  border: ${MARKER_BORDER_SIZE}px solid #000;
+
+  opacity: 0.5;
   z-index: 1;
+  transition: opacity 0.25s ease-in-out;
 
   &:hover {
-    border: 2px solid blue;
+    opacity: 1;
     cursor: pointer;
+    /* We want the marker to appear above other markers if a user hovers over it */
+    z-index: 2;
   }
 `
 

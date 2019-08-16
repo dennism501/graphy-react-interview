@@ -16,7 +16,15 @@ const Tooltip = styled.div`
   margin-left: 5px;
   top: -${MARKER_SIZE}px;
   left: ${MARKER_SIZE}px;
-  z-index: 2;
+  z-index: 1;
+  cursor: text;
+
+  opacity: 0.8;
+  transition: opacity 0.25s ease-in-out;
+
+  &:hover {
+    opacity: 1;
+  }
 `
 
 export default Tooltip
