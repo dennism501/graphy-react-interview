@@ -7,7 +7,6 @@ const ANNOTATION_SPACING = 5
 const TOTAL_MARKER_SIZE = MARKER_SIZE + MARKER_BORDER_SIZE
 const MARKER_CENTRE_POINT = Math.ceil(TOTAL_MARKER_SIZE / 2)
 
-// Add test for positioning for this container given x,y props
 const Annotation = styled.div`
   position: absolute;
   /* Centering the marker position to the initial click. */

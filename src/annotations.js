@@ -30,6 +30,13 @@ const DeleteButton = styled.button`
   font-weight: bold;
 `
 
+const SaveButton = styled.button`
+  cursor: pointer;
+  border: 0;
+  color: #fff;
+  font-weight: bold;
+`
+
 // Add tests for:
 // Container click click (a marker should be created)
 // hover over created marker (should show tooltip)
@@ -40,7 +47,8 @@ const createNewAnnotation = ({ x, y, id }) => ({
   y,
   isOpen: true,
   id,
-  content: 'Some string',
+  content: '',
+  isEditing: true,
 })
 
 class Annotations extends React.Component {
@@ -67,7 +75,7 @@ class Annotations extends React.Component {
     })
   }
 
-  handleAnnotationHoverEnter(id) {
+  handleAnnotationHoverEnter = id => () => {
     const annotation = { ...this.state.annotationStore[id] }
 
     // No need to update the state if the annotation's tooltip tooltip is already open
@@ -83,10 +91,13 @@ class Annotations extends React.Component {
     })
   }
 
-  handleAnnotationHoverExit(id) {
+  handleAnnotationHoverExit = id => () => {
     const annotation = {
       ...this.state.annotationStore[id],
     }
+
+    // If the user is editing the annotation, don't close it on them. It'll make people grumpy! 😡
+    if (annotation.isEditing) return
 
     // No need to update the state if the annotation's tooltip is already closed
     if (annotation.isOpen === false) return
@@ -101,7 +112,7 @@ class Annotations extends React.Component {
     })
   }
 
-  handleDeleteAnnotation(ev, id) {
+  handleDeleteAnnotation = id => ev => {
     ev.stopPropagation()
     const annotationStore = { ...this.state.annotationStore }
 
@@ -124,8 +135,11 @@ class Annotations extends React.Component {
             x={x}
             y={y}
             annotationId={id}
-            onMouseEnter={() => this.handleAnnotationHoverEnter(id)}
-            onMouseLeave={() => this.handleAnnotationHoverExit(id)}
+            // We are currying for these event handlers, so if performance starts to become an issue
+            // We should look into memoising the event handlers
+            // https://medium.com/@Charles_Stover/cache-your-react-event-listeners-to-improve-performance-14f635a62e15
+            onMouseEnter={this.handleAnnotationHoverEnter(id)}
+            onMouseLeave={this.handleAnnotationHoverExit(id)}
           >
             <Marker x={x} y={y} />
             {isOpen && (
@@ -133,10 +147,11 @@ class Annotations extends React.Component {
                 {content}
                 <DeleteButton
                   type='button'
-                  onClick={ev => this.handleDeleteAnnotation(ev, id)}
+                  onClick={this.handleDeleteAnnotation(id)}
                 >
                   delete
                 </DeleteButton>
+                <SaveButton>save</SaveButton>
               </Tooltip>
             )}
           </Annotation>
