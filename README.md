@@ -29,6 +29,7 @@ an overlapping marker appear on top of the sibling marker.
   you want to be able to add annotations to, and it would work. You'd be able to only add annotations within the bounds
   of that element, and it would be self contain all of the annotations.
 * Does no collision testing currently (i.e. if an annotation is outside of the contents of the body, we should display it in a different way)
+* Does not handle long unbroken text very well (essentially just hides it)
 
 ### The Future/If I had more time
 
@@ -37,6 +38,8 @@ If given more time, or this was something I was developing for work I would use 
 * I would love to get this in front of a user so confirm the UX of editing/deleting/usage.
 * I would test more with graphs and "real world" use cases.
 * I would definitely add more tests, and very likely try and componentise the annotations component in a more re-usable way.
+* Improve how long texts gets handled inside the annotations
+* Would add rich text editing (ability to write in Markdown, and it becomes nice looking)
 
 ### Local setup
 
