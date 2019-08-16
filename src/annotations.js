@@ -38,13 +38,10 @@ const AnnotationEditor = styled.textarea`
 `
 
 const AnnotationContent = styled.div`
+  width: 100%;
   flex-grow: 1;
-  ${props =>
-    !props.content &&
-    css`
-      font-size: 0.75em;
-      color: grey;
-    `}
+  font-size: 0.75em;
+  color: grey;
 `
 
 // Add tests for:
@@ -195,6 +192,7 @@ class Annotations extends React.Component {
               x={x}
               y={y}
               annotationId={id}
+              isOpen={isOpen}
               // We are currying for these event handlers, so if performance starts to become an issue
               // We should look into memoising the event handlers
               // https://medium.com/@Charles_Stover/cache-your-react-event-listeners-to-improve-performance-14f635a62e15
@@ -214,7 +212,7 @@ class Annotations extends React.Component {
                     />
                   )}
                   {!isEditing && (
-                    <AnnotationContent content={content}>
+                    <AnnotationContent>
                       {content ? content : 'Click to edit'}
                     </AnnotationContent>
                   )}
