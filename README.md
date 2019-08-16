@@ -34,7 +34,9 @@ an overlapping marker appear on top of the sibling marker.
 
 If given more time, or this was something I was developing for work I would use an external library where possible (Annotations, Tooltips, etc). If using a library remains off the table, I would likely investigate solutions on the market to see what things I can learn from (including but not limited to the API usage, the style choices, the overall UX of the annotations, etc).
 
-I would love to get this in front of a user so confirm the UX of editing/deleting/usage. I would test more with graphs and "real world" use cases. I would definitely add more tests, and very likely try and componentise the annotations component in a more re-usable way.
+* I would love to get this in front of a user so confirm the UX of editing/deleting/usage.
+* I would test more with graphs and "real world" use cases.
+* I would definitely add more tests, and very likely try and componentise the annotations component in a more re-usable way.
 
 ### Local setup
 
@@ -45,7 +47,15 @@ I would love to get this in front of a user so confirm the UX of editing/deletin
 
 ### Testing
 
-Run using `yarn run test` or `npm run test`
+Run using `yarn run test` or `npm run test`.
+
+Tests are written using Jest and React Testing Library.
+
+### Linting
+
+Run normal linting using `yarn run lint` or `npm run lint`
+
+Run the ESLint automatic fix using `yarn run lint:fix` or `npm run lint:fix`
 
 ### Data Structure
 
@@ -76,9 +86,3 @@ type Annotation {
 The annotations do not persist between page loads. The assumption being is that in the real world, there would be an API to save the annotations for retrieval later
 
 ### Points to Address
-
-- brief description of the solution
-- reasoning behind your technical choices
-- trade-offs you might have made or anything you left out
-- describe what you did differently (if anything)
-- what you might have done differently if you were to spend additional time on this solution
