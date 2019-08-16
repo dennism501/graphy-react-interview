@@ -30,6 +30,19 @@ const DeleteButton = styled.button`
   font-weight: bold;
 `
 
+// Add tests for:
+// Container click click (a marker should be created)
+// hover over created marker (should show tooltip)
+// Delete annotation
+
+const createNewAnnotation = ({ x, y, id }) => ({
+  x,
+  y,
+  isOpen: true,
+  id,
+  content: 'Some string',
+})
+
 class Annotations extends React.Component {
   constructor(props) {
     super(props)
@@ -49,13 +62,7 @@ class Annotations extends React.Component {
     this.setState({
       annotationStore: {
         ...this.state.annotationStore,
-        [id]: {
-          x,
-          y,
-          isOpen: true,
-          id,
-          content: 'Some string',
-        },
+        [id]: createNewAnnotation({ x, y, id }),
       },
     })
   }
@@ -63,7 +70,7 @@ class Annotations extends React.Component {
   handleAnnotationHoverEnter(id) {
     const annotation = { ...this.state.annotationStore[id] }
 
-    // We don't need to do anything if the annotation's tooltip tooltip is already open
+    // No need to update the state if the annotation's tooltip tooltip is already open
     if (annotation.isOpen === true) return
 
     annotation.isOpen = true
@@ -81,7 +88,7 @@ class Annotations extends React.Component {
       ...this.state.annotationStore[id],
     }
 
-    // We don't need to do anything if the annotation's tooltip is already closed
+    // No need to update the state if the annotation's tooltip is already closed
     if (annotation.isOpen === false) return
 
     annotation.isOpen = false
