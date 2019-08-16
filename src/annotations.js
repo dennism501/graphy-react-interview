@@ -45,9 +45,11 @@ const AnnotationContent = styled.div`
 `
 
 // Add tests for:
-// Container click click (a marker should be created)
-// hover over created marker (should show tooltip)
+// Container click (a marker should be created)
+// Hover over created marker (should show tooltip)
 // Delete annotation
+// Edit annotation
+// When the annotation should/shouldn't close
 
 const createNewAnnotation = ({ x, y, id }) => ({
   x,
