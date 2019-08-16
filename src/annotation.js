@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import { MARKER_SIZE, MARKER_BORDER_SIZE } from './marker'
 
@@ -18,6 +18,11 @@ const Annotation = styled.div`
 
   display: flex;
   flex-direction: column;
+  ${props =>
+    props.isOpen &&
+    css`
+      z-index: 2;
+    `}
 `
 
 export default Annotation
