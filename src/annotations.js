@@ -33,8 +33,14 @@ const DeleteButton = styled.button`
 const SaveButton = styled.button`
   cursor: pointer;
   border: 0;
-  color: #fff;
   font-weight: bold;
+`
+
+const AnnotationEditor = styled.textarea`
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  margin: 1px;
 `
 
 // Add tests for:
@@ -124,38 +130,89 @@ class Annotations extends React.Component {
     })
   }
 
+  handleEditBlur = id => ev => {
+    const newContent = ev.target.value
+
+    const annotation = {
+      ...this.state.annotationStore[id],
+    }
+
+    // No need to update the state/save the content if there wasn't a change
+    if (annotation.content === newContent) return
+
+    annotation.content = newContent
+    annotation.isEditing = false
+
+    this.setState({
+      annotationStore: {
+        ...this.state.annotationStore,
+        [id]: annotation,
+      },
+    })
+  }
+
+  handleEditClick = id => ev => {
+    ev.stopPropagation()
+
+    const annotation = {
+      ...this.state.annotationStore[id],
+    }
+
+    // No need to update the state if the user is already editing this annotation
+    if (annotation.isEditing) return
+
+    annotation.isEditing = true
+
+    this.setState({
+      annotationStore: {
+        ...this.state.annotationStore,
+        [id]: annotation,
+      },
+    })
+  }
+
   render() {
     const { annotationStore } = this.state
 
     return (
       <Container onClick={this.handleSelection}>
-        {Object.values(annotationStore).map(({ x, y, isOpen, id, content }) => (
-          <Annotation
-            key={`marker-${id}`}
-            x={x}
-            y={y}
-            annotationId={id}
-            // We are currying for these event handlers, so if performance starts to become an issue
-            // We should look into memoising the event handlers
-            // https://medium.com/@Charles_Stover/cache-your-react-event-listeners-to-improve-performance-14f635a62e15
-            onMouseEnter={this.handleAnnotationHoverEnter(id)}
-            onMouseLeave={this.handleAnnotationHoverExit(id)}
-          >
-            <Marker x={x} y={y} />
-            {isOpen && (
-              <Tooltip x={x} y={y}>
-                {content}
-                <DeleteButton
-                  type='button'
-                  onClick={this.handleDeleteAnnotation(id)}
-                >
-                  delete
-                </DeleteButton>
-                <SaveButton>save</SaveButton>
-              </Tooltip>
-            )}
-          </Annotation>
-        ))}
+        {Object.values(annotationStore).map(
+          ({ x, y, isOpen, id, content, isEditing }) => (
+            <Annotation
+              key={`marker-${id}`}
+              x={x}
+              y={y}
+              annotationId={id}
+              // We are currying for these event handlers, so if performance starts to become an issue
+              // We should look into memoising the event handlers
+              // https://medium.com/@Charles_Stover/cache-your-react-event-listeners-to-improve-performance-14f635a62e15
+              onMouseEnter={this.handleAnnotationHoverEnter(id)}
+              onMouseLeave={this.handleAnnotationHoverExit(id)}
+            >
+              <Marker x={x} y={y} />
+              {isOpen && (
+                <Tooltip x={x} y={y}>
+                  {isEditing && (
+                    <AnnotationEditor
+                      autoFocus
+                      defaultValue={content}
+                      onClick={this.handleEditClick(id)}
+                      onBlur={this.handleEditBlur(id)}
+                    />
+                  )}
+                  {!isEditing && content}
+                  <DeleteButton
+                    type='button'
+                    onClick={this.handleDeleteAnnotation(id)}
+                  >
+                    delete
+                  </DeleteButton>
+                  <SaveButton>save</SaveButton>
+                </Tooltip>
+              )}
+            </Annotation>
+          )
+        )}
       </Container>
     )
   }
