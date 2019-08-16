@@ -11,7 +11,12 @@
 
 ### Features
 
-Annotation library. Adds ability to place markers
+Annotation library. Adds ability to place markers.
+
+I have tried to address markers that are close to each other with layering:
+
+On hover, I set the z-index of the marker to a higher value than the normal marker, which makes a marker that's underneath
+an overlapping marker appear on top of the sibling marker.
 
 ### Limitations
 
@@ -41,7 +46,7 @@ type Annotation {
 
 ### Persistence
 
-The annotations do not persist between page loads. The assumption being is that in the real world, there would be an API to save them for retrieval later
+The annotations do not persist between page loads. The assumption being is that in the real world, there would be an API to save the annotations for retrieval later
 
 ### Points to Address
 
