@@ -12,7 +12,7 @@ const Marker = styled.div`
   border-radius: ${MARKER_SIZE}px;
   border: ${MARKER_BORDER_SIZE}px solid #000;
 
-  opacity: 0.5;
+  opacity: ${props => (props.isOpen ? '1' : '0.5')};
   z-index: 1;
   transition: opacity 0.25s ease-in-out;
 
