@@ -9,6 +9,10 @@
 * Start local dev server: Run `yarn run dev` or `npm run dev`
 * Visit site: Open [http://localhost:8080]()
 
+### Testing
+
+Run using `yarn run test` or `npm run test`
+
 ### Features
 
 Annotation library. Adds ability to place markers.
