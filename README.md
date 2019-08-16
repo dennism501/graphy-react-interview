@@ -60,6 +60,19 @@ Run normal linting using `yarn run lint` or `npm run lint`
 
 Run the ESLint automatic fix using `yarn run lint:fix` or `npm run lint:fix`
 
+### Deployment
+
+Deployed to [https://graphy-react-interview.scottwarren.dev/]() via Netlify.
+
+Requires `netlify-cli` package to be installed globally (`yarn global add netlify-cli` or `npm install -g netlify-cli`).
+
+To deploy:
+
+* Run a build: `yarn run build` or `npm run build`
+* Deploy:
+  * To a pre-production/preview/staging environment: `netlify deploy`
+  * To production: `netlify deploy --prod`
+
 ### Data Structure
 
 I am storing an object of the annotation objects (where the key is a unique ID), which contains the x/y of the original click, which is where I add the marker
