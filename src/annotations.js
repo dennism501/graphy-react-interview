@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import { reject, uniqueId } from 'lodash'
+import { uniqueId } from 'lodash'
 
-import Marker, { MARKER_SIZE } from './marker'
-const ANNOTATION_SPACING = 5
+import Marker from './marker'
+import Annotation from './annotation'
 
 import Tooltip from './tooltip'
 
@@ -20,16 +20,6 @@ const Container = styled.div`
 
   /* Using this so */
   position: relative;
-`
-
-const Annotation = styled.div`
-  position: absolute;
-  /* Centering the marker position to the initial click. */
-  top: ${props => props.y - MARKER_SIZE / 2 - ANNOTATION_SPACING}px;
-  left: ${props => props.x - MARKER_SIZE / 2 - ANNOTATION_SPACING}px;
-
-  /* Adding spacing so there is a small window outside the annotation where it won't hide */
-  padding: ${ANNOTATION_SPACING}px;
 `
 
 const DeleteButton = styled.button`
