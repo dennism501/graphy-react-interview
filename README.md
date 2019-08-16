@@ -13,7 +13,7 @@
 
 Annotation library. Adds ability to place markers.
 
-I have tried to address markers that are close to each other with layering:
+With a somewhat naive approach, I have tried to address markers that are close to each other with layering:
 
 On hover, I set the z-index of the marker to a higher value than the normal marker, which makes a marker that's underneath
 an overlapping marker appear on top of the sibling marker.
