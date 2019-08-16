@@ -71,7 +71,7 @@ class Annotations extends React.Component {
   }
 
   handleAnnotationHoverEnter(id) {
-    const annotation = this.state.annotationStore[id]
+    const annotation = { ...this.state.annotationStore[id] }
 
     // We don't need to do anything if the annotation's tooltip tooltip is already open
     if (annotation.isOpen === true) return
@@ -87,7 +87,9 @@ class Annotations extends React.Component {
   }
 
   handleAnnotationHoverExit(id) {
-    const annotation = this.state.annotationStore[id]
+    const annotation = {
+      ...this.state.annotationStore[id],
+    }
 
     // We don't need to do anything if the annotation's tooltip is already closed
     if (annotation.isOpen === false) return
@@ -104,10 +106,9 @@ class Annotations extends React.Component {
 
   handleDeleteAnnotation(ev, id) {
     ev.stopPropagation()
-
-    // Delete the annotation by ID
     const annotationStore = { ...this.state.annotationStore }
 
+    // Delete the annotation by ID
     delete annotationStore[id]
 
     this.setState({
