@@ -9,6 +9,10 @@ import Tooltip from './tooltip'
 
 const ID_PREFIX = 'annotation_'
 
+// TODO: implement Tooltip out of bounds check:
+// if body.width < (tooltipwidth + padding + tooltip.x)
+// if body.height < (tooltipheight + padding + tooltip.y)
+
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
