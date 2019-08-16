@@ -59,21 +59,31 @@ class Annotations extends React.Component {
 
     this.state = {
       annotationStore: {},
+      isCurrentlyEditing: false,
     }
 
-    this.handleSelection = this.handleSelection.bind(this)
+    // this.handleSelection = this.handleSelection.bind(this)
   }
 
-  handleSelection(ev) {
+  handleSelection = ev => {
     const { pageX: x, pageY: y } = ev
 
     const id = uniqueId(ID_PREFIX)
+
+    // We don't want to create a new annotation if we're editing one at the moment, and we 'finish' editing by clicking out side of the annotation
+    // We are also "done" editing so we don't get stuck in a loop of not being able to edit
+    if (this.state.isCurrentlyEditing) {
+      return this.setState({
+        isCurrentlyEditing: false,
+      })
+    }
 
     this.setState({
       annotationStore: {
         ...this.state.annotationStore,
         [id]: createNewAnnotation({ x, y, id }),
       },
+      isCurrentlyEditing: true,
     })
   }
 
@@ -99,7 +109,7 @@ class Annotations extends React.Component {
     }
 
     // If the user is editing the annotation, don't close it on them. It'll make people grumpy! 😡
-    if (annotation.isEditing) return
+    if (annotation.isEditing && this.state.isCurrentlyEditing) return
 
     // No need to update the state if the annotation's tooltip is already closed
     if (annotation.isOpen === false) return
@@ -123,6 +133,7 @@ class Annotations extends React.Component {
 
     this.setState({
       annotationStore,
+      isCurrentlyEditing: false,
     })
   }
 
@@ -164,6 +175,7 @@ class Annotations extends React.Component {
         ...this.state.annotationStore,
         [id]: annotation,
       },
+      isCurrentlyEditing: true,
     })
   }
 
@@ -185,7 +197,7 @@ class Annotations extends React.Component {
               onMouseEnter={this.handleAnnotationHoverEnter(id)}
               onMouseLeave={this.handleAnnotationHoverExit(id)}
             >
-              <Marker x={x} y={y} />
+              <Marker x={x} y={y} isOpen={isOpen} />
               {isOpen && (
                 <Tooltip x={x} y={y} onClick={this.handleEditClick(id)}>
                   {isEditing && (
