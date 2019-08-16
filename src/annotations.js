@@ -144,11 +144,9 @@ class Annotations extends React.Component {
       ...this.state.annotationStore[id],
     }
 
-    // No need to update the state/save the content if there wasn't a change
-    if (annotation.content === newContent) return
-
     annotation.content = newContent
     annotation.isEditing = false
+    annotation.isOpen = false
 
     this.setState({
       annotationStore: {
