@@ -201,9 +201,9 @@ class Annotations extends React.Component {
               onMouseEnter={this.handleAnnotationHoverEnter(id)}
               onMouseLeave={this.handleAnnotationHoverExit(id)}
             >
-              <Marker x={x} y={y} />
+              <Marker />
               {isOpen && (
-                <Tooltip x={x} y={y} onClick={this.handleEditClick(id)}>
+                <Tooltip onClick={this.handleEditClick(id)}>
                   {isEditing && (
                     <AnnotationEditor
                       autoFocus
