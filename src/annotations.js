@@ -19,13 +19,34 @@ const Container = styled.div`
   background: #fff;
 `
 
-const DeleteButton = styled.button`
+const ButtonContainer = styled.div`
+  display: flex;
+  align-content: stretch;
+  align-items: flex-end;
+  margin-top: 5px;
+`
+
+const Button = styled.button`
   cursor: pointer;
   border: 0;
-  background: red;
-  color: #fff;
+  background: transparent;
+  flex: 1;
+`
+
+const DeleteButton = styled(Button)`
+  background: #fff;
+  color: red;
+  text-decoration: underline;
+  text-align: left;
+`
+
+const SaveButton = styled(Button)`
+  background: #fff;
   font-weight: bold;
-  margin-top: 5px;
+  padding: 10px;
+  border-radius: 3px;
+  border: 1px solid #333;
+  text-align: center;
 `
 
 const AnnotationEditor = styled.textarea`
@@ -182,6 +203,25 @@ class Annotations extends React.Component {
     })
   }
 
+  handleMarkerClick = id => ev => {
+    ev.stopPropagation()
+
+    const annotation = {
+      ...this.state.annotationStore[id],
+    }
+
+    if (annotation.isEditing) return
+
+    annotation.isEditing = true
+
+    this.setState({
+      annotationStore: {
+        ...this.state.annotationStore,
+        [id]: annotation,
+      },
+    })
+  }
+
   render() {
     const { annotationStore } = this.state
 
@@ -201,31 +241,34 @@ class Annotations extends React.Component {
               onMouseEnter={this.handleAnnotationHoverEnter(id)}
               onMouseLeave={this.handleAnnotationHoverExit(id)}
             >
-              <Marker />
-              {isOpen && (
-                <Tooltip onClick={this.handleEditClick(id)}>
-                  {isEditing && (
-                    <AnnotationEditor
-                      autoFocus
-                      defaultValue={content}
-                      placeholder='Enter annotation here...'
-                      onClick={this.handleEditClick(id)}
-                      onBlur={this.handleEditBlur(id)}
-                    />
-                  )}
-                  {!isEditing && (
-                    <AnnotationContent>
-                      {content ? content : 'Click to edit'}
-                    </AnnotationContent>
-                  )}
+              <Marker onClick={this.handleMarkerClick(id)} />
+
+              <Tooltip onClick={this.handleEditClick(id)} isOpen={isOpen}>
+                {isEditing && (
+                  <AnnotationEditor
+                    autoFocus
+                    defaultValue={content}
+                    placeholder='Enter annotation here...'
+                    onClick={this.handleEditClick(id)}
+                    onBlur={this.handleEditBlur(id)}
+                  />
+                )}
+                {!isEditing && (
+                  <AnnotationContent>
+                    {content ? content : 'Click to edit'}
+                  </AnnotationContent>
+                )}
+                <ButtonContainer>
                   <DeleteButton
                     type='button'
                     onClick={this.handleDeleteAnnotation(id)}
                   >
-                    delete
+                    Delete
                   </DeleteButton>
-                </Tooltip>
-              )}
+
+                  <SaveButton type='button'>Save</SaveButton>
+                </ButtonContainer>
+              </Tooltip>
             </Annotation>
           )
         )}

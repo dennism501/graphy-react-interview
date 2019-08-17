@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import { MARKER_SIZE } from './marker'
 
@@ -24,12 +24,15 @@ const Tooltip = styled.div`
   display: flex;
   flex-direction: column;
 
-  /*opacity: 0.8;
-  transition: opacity 0.25s ease-in-out;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
 
-  &:hover {
-    opacity: 1;
-  }*/
+  ${props =>
+    props.isOpen
+      ? css`
+          opacity: 1;
+        `
+      : ''}
 `
 
 export default Tooltip
