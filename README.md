@@ -12,8 +12,9 @@ Supports ability to place annotations anywhere on the page.
 Upon creation of an annotation, a marker is placed where the user clicked to indicate the position of the annotation
 Supports ability to delete a previously placed annotation
 Supports ability to edit a previously placed annotation
+Supports resizing the textarea input in the annotation
 Shows/hides annotation on hover (intuitively doesn't hide when a user is editing the contents of the annotation)
-Mobile friendly (tested on iOS Safari on an iPhone 7 plus)
+Mobile friendly (tested on iOS Safari on an iPhone 7 plus) (although the markers aren't currently big enough to be touch friendly)
 
 Markers in close proximity work:
 
