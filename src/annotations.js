@@ -5,7 +5,7 @@ import { uniqueId } from 'lodash'
 import Marker from './marker'
 import Annotation from './annotation'
 
-import Tooltip from './tooltip'
+import Tooltip, { TOOLTIP_SIZE } from './tooltip'
 
 const ID_PREFIX = 'annotation_'
 
@@ -61,12 +61,14 @@ const AnnotationEditor = styled.textarea`
   margin: 0;
   border-radius: 3px;
   border: 1px solid #222;
+  min-width: ${TOOLTIP_SIZE}px;
 `
 
 const AnnotationContent = styled.div`
   width: 100%;
   font-size: 0.75em;
   color: grey;
+  min-width: ${TOOLTIP_SIZE}px;
 `
 
 // Add tests for:
