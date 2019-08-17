@@ -4,7 +4,7 @@ import { uniqueId } from 'lodash'
 
 import Marker from './marker'
 import Annotation from './annotation'
-
+import { DeleteButton, SaveButton } from './buttons'
 import Tooltip, { TOOLTIP_SIZE } from './tooltip'
 
 const ID_PREFIX = 'annotation_'
@@ -29,30 +29,7 @@ const ButtonContainer = styled.div`
   display: flex;
   align-content: stretch;
   align-items: flex-end;
-  margin-top: 5px;
-`
-
-const Button = styled.button`
-  cursor: pointer;
-  border: 0;
-  background: transparent;
-  flex: 1;
-`
-
-const DeleteButton = styled(Button)`
-  background: #fff;
-  color: red;
-  text-decoration: underline;
-  text-align: left;
-`
-
-const SaveButton = styled(Button)`
-  background: #fff;
-  font-weight: bold;
-  padding: 10px;
-  border-radius: 3px;
-  border: 1px solid #333;
-  text-align: center;
+  margin-top: 10px;
 `
 
 const AnnotationEditor = styled.textarea`
@@ -69,6 +46,10 @@ const AnnotationContent = styled.div`
   font-size: 0.75em;
   color: grey;
   min-width: ${TOOLTIP_SIZE}px;
+`
+
+const TooltipTitle = styled.strong`
+  margin-bottom: 5px;
 `
 
 // Add tests for:
@@ -268,9 +249,10 @@ class Annotations extends React.Component {
               onMouseEnter={this.handleAnnotationHoverEnter(id)}
               onMouseLeave={this.handleAnnotationHoverExit(id)}
             >
-              <Marker onClick={this.handleMarkerClick(id)} />
+              <Marker isOpen={isOpen} onClick={this.handleMarkerClick(id)} />
 
               <Tooltip isOpen={isOpen}>
+                <TooltipTitle>Edit Annotation</TooltipTitle>
                 <AnnotationContentContainer onClick={this.handleEditClick(id)}>
                   {isEditing && (
                     <AnnotationEditor
