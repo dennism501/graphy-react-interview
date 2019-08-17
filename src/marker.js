@@ -13,6 +13,7 @@ const Marker = styled.div`
   &:hover {
     /* We want the marker to appear above other markers if a user hovers over it */
     cursor: pointer;
+    z-index: 1;
   }
 `
 
