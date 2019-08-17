@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "webpack-dev-server --mode development --hot",
     "build": "NODE_ENV=production webpack --mode production",
-    "test": "jest",
+    "test": "jest .",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix"
   },
@@ -58,6 +58,9 @@
     "webpack-dev-server": "^3.7.2"
   },
   "lint-staged": {
+    "*": [
+      "yarn test"
+    ],
     "*.js": [
       "eslint src --fix",
       "git add"
