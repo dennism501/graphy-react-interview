@@ -19,6 +19,12 @@ const Container = styled.div`
   background: #fff;
 `
 
+const AnnotationContentContainer = styled.div`
+  cursor: text;
+  flex: 1;
+  display: flex;
+`
+
 const ButtonContainer = styled.div`
   display: flex;
   align-content: stretch;
@@ -53,14 +59,12 @@ const AnnotationEditor = styled.textarea`
   width: 100%;
   padding: 0;
   margin: 0;
-  flex-grow: 1;
   border-radius: 3px;
   border: 1px solid #222;
 `
 
 const AnnotationContent = styled.div`
   width: 100%;
-  flex-grow: 1;
   font-size: 0.75em;
   color: grey;
 `
@@ -157,10 +161,13 @@ class Annotations extends React.Component {
 
     const annotation = this.state.annotationStore[id]
 
-    let isEditing = annotation.isEditing
+    let { isEditing, isOpen } = annotation
 
     // If they didn't change the content, we can assume they've finished editing the annotation
-    if (annotation.content === newContent) isEditing = false
+    if (annotation.content === newContent) {
+      isEditing = false
+      isOpen = false
+    }
 
     this.setState({
       annotationStore: {
@@ -169,6 +176,7 @@ class Annotations extends React.Component {
           ...annotation,
           content: newContent,
           isEditing,
+          isOpen,
         },
       },
     })
@@ -232,6 +240,11 @@ class Annotations extends React.Component {
     })
   }
 
+  // We're stopping a new annotation being created if they click within an open annotation
+  handleAnnotationClick(ev) {
+    ev.stopPropagation()
+  }
+
   render() {
     const { annotationStore } = this.state
 
@@ -246,6 +259,7 @@ class Annotations extends React.Component {
               y={y}
               annotationId={id}
               isOpen={isOpen}
+              onClick={this.handleAnnotationClick}
               // We are currying for these event handlers, so if performance starts to become an issue
               // We should look into memoising the event handlers
               // https://medium.com/@Charles_Stover/cache-your-react-event-listeners-to-improve-performance-14f635a62e15
@@ -254,21 +268,23 @@ class Annotations extends React.Component {
             >
               <Marker onClick={this.handleMarkerClick(id)} />
 
-              <Tooltip onClick={this.handleEditClick(id)} isOpen={isOpen}>
-                {isEditing && (
-                  <AnnotationEditor
-                    autoFocus
-                    defaultValue={content}
-                    placeholder='Enter annotation here...'
-                    onClick={this.handleEditClick(id)}
-                    onBlur={this.handleEditBlur(id)}
-                  />
-                )}
-                {!isEditing && (
-                  <AnnotationContent>
-                    {content ? content : 'Click to edit'}
-                  </AnnotationContent>
-                )}
+              <Tooltip isOpen={isOpen}>
+                <AnnotationContentContainer onClick={this.handleEditClick(id)}>
+                  {isEditing && (
+                    <AnnotationEditor
+                      autoFocus
+                      defaultValue={content}
+                      placeholder='Enter annotation here...'
+                      onClick={this.handleEditClick(id)}
+                      onBlur={this.handleEditBlur(id)}
+                    />
+                  )}
+                  {!isEditing && (
+                    <AnnotationContent>
+                      {content ? content : 'Click to edit'}
+                    </AnnotationContent>
+                  )}
+                </AnnotationContentContainer>
                 <ButtonContainer>
                   <DeleteButton
                     type='button'
