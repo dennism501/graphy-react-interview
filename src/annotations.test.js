@@ -22,6 +22,42 @@ describe('Annotations', () => {
     expect(await queryAllByTestId('marker')).toHaveLength(1)
   })
 
+  test('showing the tooltip upon hover of a marker', async () => {
+    const { queryAllByTestId, getByTestId } = render(<Annotations />)
+
+    fireEvent.click(await getByTestId('container'), {
+      pageX: 100,
+      pageY: 100,
+    })
+
+    fireEvent.mouseEnter(await getByTestId('marker'))
+
+    expect(await queryAllByTestId('tooltip')).toHaveLength(1)
+
+    fireEvent.mouseLeave(await getByTestId('marker'))
+
+    expect(await queryAllByTestId('tooltip')).toHaveLength(1)
+  })
+
+  test('showing the tooltip upon click of a marker', async () => {
+    const { queryAllByTestId, getByTestId } = render(<Annotations />)
+
+    fireEvent.click(await getByTestId('container'), {
+      pageX: 100,
+      pageY: 100,
+    })
+
+    fireEvent.click(await getByTestId('marker'))
+
+    expect(await queryAllByTestId('tooltip')).toHaveLength(1)
+  })
+
+  // test('deleting an annotation when the delete button is clicked', async () => {})
+  // test('editing an annotation', async () => {})
+  // test('closing the annotation when <x>', async () => {})
+  // test('opening the annotation when <y>', async () => {})
+  // test('annotation remaings open when editing', async () => {})
+
   // WIP in moving this test to here
   // test('creating an annotation at the required location', async () => {
   //   // So that we have an firm/nonchanging input and output (i.e. x = 100, padding = 5, marker size = 25, border = 2)
@@ -43,10 +79,4 @@ describe('Annotations', () => {
   //   expect(annotation).toHaveStyle('top: 42px')
   //   expect(annotation).toHaveStyle('left: 92px')
   // })
-  // test('showing the tooltip upon hover of a marker', () => {})
-  // test('deleting an annotation when the delete button is clicked', () => {})
-  // test('editing an annotation', () => {})
-  // test('closing the annotation when <x>', () => {})
-  // test('opening the annotation when <y>', () => {})
-  // test('annotation remaings open when editing', () => {})
 })
