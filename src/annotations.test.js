@@ -3,24 +3,28 @@ import React from 'react'
 import Annotations from './annotations'
 
 import '@testing-library/jest-dom/extend-expect'
-import { render /*, fireEvent*/ } from '@testing-library/react'
+import { render, fireEvent } from '@testing-library/react'
 
 describe('Annotations', () => {
-  it('should render annotations without crashing', () => {
+  test('rendering of annotations without crashing', () => {
     render(<Annotations />)
   })
-  // it('should create an annotation when the container is clicked', () => {
-  //   const container = render(<Annotations />)
+  test('creating an annotation when the container is clicked', async () => {
+    const { queryAllByTestId, getByTestId } = render(<Annotations />)
 
-  //   fireEvent.click(container.firstChild, {
-  //     pageX: 100,
-  //     pageY: 100,
-  //   })
-  // })
-  // it('should show the tooltip upon hover of a marker', () => {})
-  // it('delete an annotation when the delete button is clicked', () => {})
-  // it('should edit an annotation', () => {})
-  // it('should close the annotation when <x>', () => {})
-  // it('should open the annotation when <y>', () => {})
-  // it('should retain the "open" state of an annotation when edited', () => {})
+    expect(await queryAllByTestId('marker')).toHaveLength(0)
+
+    fireEvent.click(await getByTestId('container'), {
+      pageX: 100,
+      pageY: 100,
+    })
+
+    expect(await queryAllByTestId('marker')).toHaveLength(1)
+  })
+  // test('showing the tooltip upon hover of a marker', () => {})
+  // test('deleting an annotation when the delete button is clicked', () => {})
+  // test('editing an annotation', () => {})
+  // test('closing the annotation when <x>', () => {})
+  // test('opening the annotation when <y>', () => {})
+  // test('annotation remaings open when editing', () => {})
 })

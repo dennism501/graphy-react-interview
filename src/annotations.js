@@ -204,7 +204,7 @@ class Annotations extends React.Component {
     const { annotationStore } = this.state
 
     return (
-      <Container onClick={this.handleSelection}>
+      <Container onClick={this.handleSelection} data-testid='container'>
         {Object.values(annotationStore).map(
           ({ x, y, isOpen, id, content, isEditing }) => (
             <Annotation
@@ -217,13 +217,15 @@ class Annotations extends React.Component {
               onClick={this.handleAnnotationClick}
               onMouseEnter={() => this.handleAnnotationHoverEnter(id)}
               onMouseLeave={() => this.handleAnnotationHoverExit(id)}
+              data-testid='annotation'
             >
               <Marker
                 isOpen={isOpen}
                 onClick={ev => this.handleMarkerClick(ev, id)}
+                data-testid='marker'
               />
 
-              <Tooltip isOpen={isOpen}>
+              <Tooltip isOpen={isOpen} data-testid='tooltip'>
                 <TooltipTitle>Edit Annotation</TooltipTitle>
                 <AnnotationContentContainer
                   onClick={ev => this.handleEditClick(ev, id)}
@@ -233,10 +235,11 @@ class Annotations extends React.Component {
                       autoFocus
                       defaultValue={content}
                       onBlur={ev => this.handleEditBlur(ev, id)}
+                      data-testid='annotation-editor'
                     />
                   )}
                   {!isEditing && (
-                    <AnnotationContent>
+                    <AnnotationContent data-testid='annotation-content'>
                       {content ? content : 'Click to edit'}
                     </AnnotationContent>
                   )}
@@ -245,6 +248,7 @@ class Annotations extends React.Component {
                   <DeleteButton
                     type='button'
                     onClick={ev => this.handleDeleteAnnotation(ev, id)}
+                    data-testid='delete-annotation'
                   >
                     Delete
                   </DeleteButton>
@@ -252,6 +256,7 @@ class Annotations extends React.Component {
                   <SaveButton
                     type='button'
                     onClick={ev => this.handleSaveAnnotation(ev, id)}
+                    data-testid='save-annotation'
                   >
                     Save and Close
                   </SaveButton>
