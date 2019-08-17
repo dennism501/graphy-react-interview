@@ -104,33 +104,40 @@ class Annotations extends React.Component {
   }
 
   handleAnnotationHoverEnter = id => () => {
-    // const annotation = { ...this.state.annotationStore[id] }
-    // // No need to update the state if the annotation's tooltip tooltip is already open
-    // if (annotation.isOpen === true) return
-    // annotation.isOpen = true
-    // this.setState({
-    //   annotationStore: {
-    //     ...this.state.annotationStore,
-    //     [id]: annotation,
-    //   },
-    // })
+    const annotation = this.state.annotationStore[id]
+
+    // No need to update the state if the annotation's tooltip tooltip is already open
+    if (annotation.isOpen) return
+
+    this.setState({
+      annotationStore: {
+        ...this.state.annotationStore,
+        [id]: {
+          ...annotation,
+          isOpen: true,
+        },
+      },
+    })
   }
 
   handleAnnotationHoverExit = id => () => {
-    // const annotation = {
-    //   ...this.state.annotationStore[id],
-    // }
-    // // If the user is editing the annotation, don't close it on them. It'll make people grumpy! 😡
-    // if (annotation.isEditing) return
-    // // No need to update the state if the annotation's tooltip is already closed
-    // if (!annotation.isOpen) return
-    // annotation.isOpen = false
-    // this.setState({
-    //   annotationStore: {
-    //     ...this.state.annotationStore,
-    //     [id]: annotation,
-    //   },
-    // })
+    const annotation = this.state.annotationStore[id]
+
+    // If the user is editing the annotation, don't close it on them. It'll make people grumpy! 😡
+    if (annotation.isEditing) return
+
+    // No need to update the state if the annotation's tooltip is already closed
+    if (!annotation.isOpen) return
+
+    this.setState({
+      annotationStore: {
+        ...this.state.annotationStore,
+        [id]: {
+          ...annotation,
+          isOpen: false,
+        },
+      },
+    })
   }
 
   handleDeleteAnnotation = id => ev => {
@@ -148,16 +155,21 @@ class Annotations extends React.Component {
   handleEditBlur = id => ev => {
     const newContent = ev.target.value
 
-    const annotation = {
-      ...this.state.annotationStore[id],
-    }
+    const annotation = this.state.annotationStore[id]
 
-    annotation.content = newContent
+    let isEditing = annotation.isEditing
+
+    // If they didn't change the content, we can assume they've finished editing the annotation
+    if (annotation.content === newContent) isEditing = false
 
     this.setState({
       annotationStore: {
         ...this.state.annotationStore,
-        [id]: annotation,
+        [id]: {
+          ...annotation,
+          content: newContent,
+          isEditing,
+        },
       },
     })
   }
@@ -165,19 +177,18 @@ class Annotations extends React.Component {
   handleEditClick = id => ev => {
     ev.stopPropagation()
 
-    const annotation = {
-      ...this.state.annotationStore[id],
-    }
+    const annotation = this.state.annotationStore[id]
 
     // No need to update the state if the user is already editing this annotation
     if (annotation.isEditing) return
 
-    annotation.isEditing = true
-
     this.setState({
       annotationStore: {
         ...this.state.annotationStore,
-        [id]: annotation,
+        [id]: {
+          ...annotation,
+          isEditing: true,
+        },
       },
     })
   }
@@ -185,9 +196,7 @@ class Annotations extends React.Component {
   handleMarkerClick = id => ev => {
     ev.stopPropagation()
 
-    const annotation = {
-      ...this.state.annotationStore[id],
-    }
+    const annotation = this.state.annotationStore[id]
 
     if (annotation.isEditing && annotation.isOpen) return
 
@@ -209,9 +218,7 @@ class Annotations extends React.Component {
   handleSaveAnnotation = id => ev => {
     ev.stopPropagation()
 
-    const annotation = {
-      ...this.state.annotationStore[id],
-    }
+    const annotation = this.state.annotationStore[id]
 
     this.setState({
       annotationStore: {
