@@ -3,9 +3,9 @@ import styled, { css } from 'styled-components'
 import { uniqueId } from 'lodash'
 
 import Marker from './marker'
-import Annotation from './annotation'
+import Annotation, { AnnotationEditor, AnnotationContent } from './annotation'
 import { DeleteButton, SaveButton, ButtonContainer } from './buttons'
-import Tooltip, { TOOLTIP_WIDTH } from './tooltip'
+import Tooltip, { TooltipTitle } from './tooltip'
 
 const ID_PREFIX = 'annotation_'
 
@@ -23,34 +23,6 @@ const AnnotationContentContainer = styled.div`
   cursor: text;
   flex: 1;
   display: flex;
-`
-
-const AnnotationEditor = styled.textarea`
-  width: 100%;
-  margin: 0;
-  border-radius: 3px;
-  border: 1px solid #222;
-  min-width: ${TOOLTIP_WIDTH}px;
-  transition: 0.2s all ease;
-  outline: 0;
-  padding: 10px;
-
-  &:focus {
-    outline: 0;
-    border-color: #2980b9;
-  }
-`
-
-const AnnotationContent = styled.div`
-  width: 100%;
-  font-size: 0.75em;
-  color: grey;
-  border: 1px solid transparent;
-  min-width: ${TOOLTIP_WIDTH}px;
-`
-
-const TooltipTitle = styled.strong`
-  margin-bottom: 5px;
 `
 
 // Add tests for:
@@ -147,7 +119,7 @@ class Annotations extends React.Component {
     let { isEditing, isOpen } = annotation
 
     // If they didn't change the content, we can assume they've finished editing the annotation
-    // We cannot close the annotation here, otherwise the "create marker" event will occur
+    // We cannot close the annotation here, otherwise the "create annotation" event will occur
     if (annotation.content === newContent) {
       isEditing = false
     }

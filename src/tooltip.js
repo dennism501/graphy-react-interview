@@ -3,6 +3,10 @@ import styled from 'styled-components'
 export const TOOLTIP_WIDTH = 200
 export const TOOLTIP_HEIGHT = 150
 
+export const TooltipTitle = styled.strong`
+  margin-bottom: 5px;
+`
+
 const Tooltip = styled.div`
   background: white;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);

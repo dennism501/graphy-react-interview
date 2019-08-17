@@ -16,6 +16,6 @@ test('Creates an annotation at the required location', () => {
   // We probably wouldn't normally test the style attributes of a component
   // But in this case, the positioning of the marker is super important
   // We are testing that the annotation gets positioned correctly relative to the initial click
-  expect(container.firstChild).toHaveStyle('top: 31px')
-  expect(container.firstChild).toHaveStyle('left: 81px')
+  expect(container.firstChild).toHaveStyle('top: 42px')
+  expect(container.firstChild).toHaveStyle('left: 92px')
 })
