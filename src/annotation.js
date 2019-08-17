@@ -17,12 +17,7 @@ const Annotation = styled.div`
   padding: ${ANNOTATION_SPACING}px;
 
   display: flex;
-  flex-direction: column;
-  ${props =>
-    props.isOpen &&
-    css`
-      z-index: 2;
-    `}
+  flex-direction: row;
 `
 
 export default Annotation

@@ -5,8 +5,6 @@ export const MARKER_BORDER_SIZE = 2
 
 const Marker = styled.div`
   background: #fff;
-
-  position: relative;
   width: ${MARKER_SIZE}px;
   height: ${MARKER_SIZE}px;
   border-radius: ${MARKER_SIZE}px;
