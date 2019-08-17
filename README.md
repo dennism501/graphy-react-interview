@@ -67,6 +67,10 @@ Run normal linting using `yarn run lint` or `npm run lint`
 
 Run the ESLint automatic fix using `yarn run lint:fix` or `npm run lint:fix`
 
+### Hooks
+
+Tests and linting are both run on the pre-commit hook. Pass `--no-verify` to `git commit` if you want to skip these.
+
 ### Deployment
 
 Deployed to [https://graphy-react-interview.scottwarren.dev/]() via Netlify.
