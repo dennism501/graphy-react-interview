@@ -148,7 +148,6 @@ class Annotations extends React.Component {
 
   handleEditBlur = id => ev => {
     const newContent = ev.target.value
-
     const annotation = this.state.annotationStore[id]
 
     let { isEditing, isOpen } = annotation
@@ -265,7 +264,6 @@ class Annotations extends React.Component {
                     <AnnotationEditor
                       autoFocus
                       defaultValue={content}
-                      onClick={this.handleEditClick(id)}
                       onBlur={this.handleEditBlur(id)}
                     />
                   )}
@@ -287,7 +285,7 @@ class Annotations extends React.Component {
                     type='button'
                     onClick={this.handleSaveAnnotation(id)}
                   >
-                    Save
+                    Save and Close
                   </SaveButton>
                 </ButtonContainer>
               </Tooltip>
