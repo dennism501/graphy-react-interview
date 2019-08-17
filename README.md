@@ -40,6 +40,11 @@ If given more time, or this was something I was developing for work I would use 
 * I would definitely add more tests, and very likely try and componentise the annotations component in a more re-usable way.
 * Improve how long texts gets handled inside the annotations
 * Would add rich text editing (ability to write in Markdown, and it becomes nice looking)
+* Expansions of the Annotations API:
+  * Ability to choose from a predesigned subset of Markers
+  * Ability to supply a custom Marker
+* The annotations do not persist between page loads. The assumption being is that in the real world, there would be an API to save the annotations for retrieval later.
+* Persistence to localstorage (so that if the API request to save the annotations fails, the user doesn't lose their annotations)
 
 ### Local setup
 
@@ -96,9 +101,3 @@ type Annotation {
   isEditing: Boolean,
 }
 ```
-
-### Persistence
-
-The annotations do not persist between page loads. The assumption being is that in the real world, there would be an API to save the annotations for retrieval later
-
-### Points to Address
