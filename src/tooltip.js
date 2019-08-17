@@ -48,6 +48,7 @@ const Tooltip = styled.div`
           height: auto;
           transition: min-width 0ms 0ms, height 0ms 0ms, min-height 0ms 0ms,
             opacity 600ms 0ms;
+          z-index: 1;
         `
       : ''}
 `
