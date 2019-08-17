@@ -37,15 +37,16 @@ an overlapping marker appear on top of the sibling marker.
 If given more time, or this was something I was developing for work I would use an external library where possible (Annotations, Tooltips, etc). If using a library remains off the table, I would likely investigate solutions on the market to see what things I can learn from (including but not limited to the API usage, the style choices, the overall UX of the annotations, etc).
 
 * I would love to get this in front of a user so confirm the UX of editing/deleting/usage.
-* I would test more with graphs and "real world" use cases.
-* I would definitely add more tests, and very likely try and componentise the annotations component in a more re-usable way.
+* Handle implementations on graphs and more "real world" use cases.
+* Add more tests, and very likely try and componentise the annotations component in a more re-usable way.
 * Improve how long texts gets handled inside the annotations
-* Would add rich text editing (ability to write in Markdown, and it becomes nice looking)
+* Would add rich text editing (ability to write in Markdown)
 * Expansions of the Annotations API:
   * Ability to choose from a predesigned subset of Markers
   * Ability to supply a custom Marker
 * The annotations do not persist between page loads. The assumption being is that in the real world, there would be an API to save the annotations for retrieval later.
 * Persistence to localstorage (so that if the API request to save the annotations fails, the user doesn't lose their annotations)
+* Handle collision of bounding box (i.e. the browser viewport)
 
 ### Local setup
 
