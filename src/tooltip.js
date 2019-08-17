@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
-const TOOLTIP_SIZE = 150
+export const TOOLTIP_WIDTH = 200
+export const TOOLTIP_HEIGHT = 150
 
 const Tooltip = styled.div`
   background: white;
@@ -13,8 +14,8 @@ const Tooltip = styled.div`
   padding: 10px;
   border-radius: 2px;
   /* Using min height/width so the user can resize the textarea */
-  min-height: ${TOOLTIP_SIZE}px;
-  min-width: ${TOOLTIP_SIZE}px;
+  min-height: ${TOOLTIP_HEIGHT}px;
+  min-width: ${TOOLTIP_WIDTH}px;
   display: ${props => (props.isOpen ? 'flex' : 'none')};
   z-index: 1;
 `
