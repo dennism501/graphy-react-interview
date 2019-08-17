@@ -3,7 +3,7 @@ import React from 'react'
 import Annotation from './annotation'
 
 import '@testing-library/jest-dom/extend-expect'
-import { render, fireEvent } from '@testing-library/react'
+import { render } from '@testing-library/react'
 
 describe('Single annotation', () => {
   it('should create an annotation at the required location', () => {

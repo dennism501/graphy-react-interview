@@ -1,5 +1,15 @@
 {
-  "plugins": ["prettier"],
-  "extends": ["plugin:prettier/recommended"],
-  "parser": "babel-eslint"
+  "plugins": ["react", "prettier", "jest"],
+  "extends": ["eslint:recommended", "plugin:prettier/recommended", "plugin:react/recommended"],
+  "parser": "babel-eslint",
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "env": {
+    "jest": true,
+    "browser": true,
+    "node": true
+  }
 }

@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 
 import { MARKER_SIZE } from './marker'
 import { TOOLTIP_WIDTH } from './tooltip'
