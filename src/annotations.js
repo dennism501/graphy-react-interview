@@ -16,7 +16,7 @@ const ID_PREFIX = 'annotation_'
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
-  background: palegreen;
+  background: #fff;
 `
 
 const DeleteButton = styled.button`

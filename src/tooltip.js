@@ -7,7 +7,7 @@ const TOOLTIP_SIZE = 125
 const Tooltip = styled.div`
   position: relative;
   background: white;
-  border: 1px solid #333;
+  box-shadow: 1px 1px 15px -7px rgba(0, 0, 0, 0.29);
   border-radius: 2px;
   padding: 5px;
   width: ${TOOLTIP_SIZE}px;
@@ -21,16 +21,15 @@ const Tooltip = styled.div`
   cursor: text;
   overflow: hidden;
   text-overflow: ellipsis;
+  display: flex;
+  flex-direction: column;
 
-  opacity: 0.8;
+  /*opacity: 0.8;
   transition: opacity 0.25s ease-in-out;
 
   &:hover {
     opacity: 1;
-  }
-
-  display: flex;
-  flex-direction: column;
+  }*/
 `
 
 export default Tooltip

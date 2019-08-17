@@ -4,7 +4,7 @@ export const MARKER_SIZE = 25
 export const MARKER_BORDER_SIZE = 2
 
 const Marker = styled.div`
-  background: #fff;
+  background: transparent;
 
   position: relative;
   width: ${MARKER_SIZE}px;
