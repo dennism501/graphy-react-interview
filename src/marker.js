@@ -17,7 +17,7 @@ const Marker = styled.div`
     cursor: pointer;
     z-index: 1;
     transform: scale(1.25);
-    box-shadow: rgba(0, 0, 0, 0.133) 0px 0px 2em;
+    box-shadow: 0 0px 6px rgba(0, 0, 0, 0.23), 0 0px 6px rgba(0, 0, 0, 0.1);
   }
 `
 
