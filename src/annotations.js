@@ -4,7 +4,7 @@ import { uniqueId } from 'lodash'
 
 import Marker from './marker'
 import Annotation from './annotation'
-import { DeleteButton, SaveButton } from './buttons'
+import { DeleteButton, SaveButton, ButtonContainer } from './buttons'
 import Tooltip, { TOOLTIP_WIDTH } from './tooltip'
 
 const ID_PREFIX = 'annotation_'
@@ -23,12 +23,6 @@ const AnnotationContentContainer = styled.div`
   cursor: text;
   flex: 1;
   display: flex;
-`
-
-const ButtonContainer = styled.div`
-  display: flex;
-  align-content: stretch;
-  margin-top: 10px;
 `
 
 const AnnotationEditor = styled.textarea`
@@ -97,7 +91,7 @@ class Annotations extends React.Component {
     })
   }
 
-  handleAnnotationHoverEnter = id => () => {
+  handleAnnotationHoverEnter(id) {
     const annotation = this.state.annotationStore[id]
 
     // No need to update the state if the annotation's tooltip tooltip is already open
@@ -114,7 +108,7 @@ class Annotations extends React.Component {
     })
   }
 
-  handleAnnotationHoverExit = id => () => {
+  handleAnnotationHoverExit(id) {
     const annotation = this.state.annotationStore[id]
 
     // If the user is editing the annotation, don't close it on them. It'll make people grumpy! 😡
@@ -134,7 +128,7 @@ class Annotations extends React.Component {
     })
   }
 
-  handleDeleteAnnotation = id => ev => {
+  handleDeleteAnnotation(ev, id) {
     ev.stopPropagation()
     const annotationStore = { ...this.state.annotationStore }
 
@@ -146,7 +140,7 @@ class Annotations extends React.Component {
     })
   }
 
-  handleEditBlur = id => ev => {
+  handleEditBlur(ev, id) {
     const newContent = ev.target.value
     const annotation = this.state.annotationStore[id]
 
@@ -171,7 +165,7 @@ class Annotations extends React.Component {
     })
   }
 
-  handleEditClick = id => ev => {
+  handleEditClick(ev, id) {
     ev.stopPropagation()
 
     const annotation = this.state.annotationStore[id]
@@ -190,7 +184,7 @@ class Annotations extends React.Component {
     })
   }
 
-  handleMarkerClick = id => ev => {
+  handleMarkerClick(ev, id) {
     ev.stopPropagation()
 
     const annotation = this.state.annotationStore[id]
@@ -212,7 +206,7 @@ class Annotations extends React.Component {
   // The field's content actually gets saved on the textarea blur
   // Potentially in the future we could save their edits as a draft and not
   // actually save it until the user clicks save.
-  handleSaveAnnotation = id => ev => {
+  handleSaveAnnotation(ev, id) {
     ev.stopPropagation()
 
     const annotation = this.state.annotationStore[id]
@@ -249,22 +243,24 @@ class Annotations extends React.Component {
               annotationId={id}
               isOpen={isOpen}
               onClick={this.handleAnnotationClick}
-              // We are currying for these event handlers, so if performance starts to become an issue
-              // We should look into memoising the event handlers
-              // https://medium.com/@Charles_Stover/cache-your-react-event-listeners-to-improve-performance-14f635a62e15
-              onMouseEnter={this.handleAnnotationHoverEnter(id)}
-              onMouseLeave={this.handleAnnotationHoverExit(id)}
+              onMouseEnter={() => this.handleAnnotationHoverEnter(id)}
+              onMouseLeave={() => this.handleAnnotationHoverExit(id)}
             >
-              <Marker isOpen={isOpen} onClick={this.handleMarkerClick(id)} />
+              <Marker
+                isOpen={isOpen}
+                onClick={ev => this.handleMarkerClick(ev, id)}
+              />
 
               <Tooltip isOpen={isOpen}>
                 <TooltipTitle>Edit Annotation</TooltipTitle>
-                <AnnotationContentContainer onClick={this.handleEditClick(id)}>
+                <AnnotationContentContainer
+                  onClick={ev => this.handleEditClick(ev, id)}
+                >
                   {isEditing && (
                     <AnnotationEditor
                       autoFocus
                       defaultValue={content}
-                      onBlur={this.handleEditBlur(id)}
+                      onBlur={ev => this.handleEditBlur(ev, id)}
                     />
                   )}
                   {!isEditing && (
@@ -276,14 +272,14 @@ class Annotations extends React.Component {
                 <ButtonContainer>
                   <DeleteButton
                     type='button'
-                    onClick={this.handleDeleteAnnotation(id)}
+                    onClick={ev => this.handleDeleteAnnotation(ev, id)}
                   >
                     Delete
                   </DeleteButton>
 
                   <SaveButton
                     type='button'
-                    onClick={this.handleSaveAnnotation(id)}
+                    onClick={ev => this.handleSaveAnnotation(ev, id)}
                   >
                     Save and Close
                   </SaveButton>
