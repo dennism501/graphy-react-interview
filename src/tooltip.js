@@ -8,7 +8,7 @@ const SPACE_BETWEEN_TOOLTIP_AND_MARKER = 5
 const Tooltip = styled.div`
   background: white;
   box-shadow: 1px 1px 15px -7px rgba(0, 0, 0, 0.29);
-  margin-top: -${MARKER_SIZE}px;
+  margin-top: -${MARKER_SIZE + MARKER_BORDER_SIZE}px;
   ${'' /*
     Moving the tooltip away from the original marker position
   */}
