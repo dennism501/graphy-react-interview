@@ -4,7 +4,7 @@ export const MARKER_SIZE = 25
 export const MARKER_BORDER_SIZE = 2
 
 const Marker = styled.div`
-  background: transparent;
+  background: #fff;
 
   position: relative;
   width: ${MARKER_SIZE}px;
@@ -17,6 +17,7 @@ const Marker = styled.div`
   &:hover {
     /* We want the marker to appear above other markers if a user hovers over it */
     z-index: 2;
+    cursor: pointer;
   }
 `
 
