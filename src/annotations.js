@@ -104,40 +104,33 @@ class Annotations extends React.Component {
   }
 
   handleAnnotationHoverEnter = id => () => {
-    const annotation = { ...this.state.annotationStore[id] }
-
-    // No need to update the state if the annotation's tooltip tooltip is already open
-    if (annotation.isOpen === true) return
-
-    annotation.isOpen = true
-
-    this.setState({
-      annotationStore: {
-        ...this.state.annotationStore,
-        [id]: annotation,
-      },
-    })
+    // const annotation = { ...this.state.annotationStore[id] }
+    // // No need to update the state if the annotation's tooltip tooltip is already open
+    // if (annotation.isOpen === true) return
+    // annotation.isOpen = true
+    // this.setState({
+    //   annotationStore: {
+    //     ...this.state.annotationStore,
+    //     [id]: annotation,
+    //   },
+    // })
   }
 
   handleAnnotationHoverExit = id => () => {
-    const annotation = {
-      ...this.state.annotationStore[id],
-    }
-
-    // If the user is editing the annotation, don't close it on them. It'll make people grumpy! 😡
-    if (annotation.isEditing) return
-
-    // No need to update the state if the annotation's tooltip is already closed
-    if (!annotation.isOpen) return
-
-    annotation.isOpen = false
-
-    this.setState({
-      annotationStore: {
-        ...this.state.annotationStore,
-        [id]: annotation,
-      },
-    })
+    // const annotation = {
+    //   ...this.state.annotationStore[id],
+    // }
+    // // If the user is editing the annotation, don't close it on them. It'll make people grumpy! 😡
+    // if (annotation.isEditing) return
+    // // No need to update the state if the annotation's tooltip is already closed
+    // if (!annotation.isOpen) return
+    // annotation.isOpen = false
+    // this.setState({
+    //   annotationStore: {
+    //     ...this.state.annotationStore,
+    //     [id]: annotation,
+    //   },
+    // })
   }
 
   handleDeleteAnnotation = id => ev => {
@@ -160,8 +153,6 @@ class Annotations extends React.Component {
     }
 
     annotation.content = newContent
-    annotation.isEditing = false
-    annotation.isOpen = false
 
     this.setState({
       annotationStore: {
@@ -198,14 +189,38 @@ class Annotations extends React.Component {
       ...this.state.annotationStore[id],
     }
 
-    if (annotation.isEditing) return
-
-    annotation.isEditing = true
+    if (annotation.isEditing && annotation.isOpen) return
 
     this.setState({
       annotationStore: {
         ...this.state.annotationStore,
-        [id]: annotation,
+        [id]: {
+          ...annotation,
+          isEditing: true,
+          isOpen: true,
+        },
+      },
+    })
+  }
+
+  // The field's content actually gets saved on the textarea blur
+  // Potentially in the future we could save their edits as a draft and not
+  // actually save it until the user clicks save.
+  handleSaveAnnotation = id => ev => {
+    ev.stopPropagation()
+
+    const annotation = {
+      ...this.state.annotationStore[id],
+    }
+
+    this.setState({
+      annotationStore: {
+        ...this.state.annotationStore,
+        [id]: {
+          ...annotation,
+          isEditing: false,
+          isOpen: false,
+        },
       },
     })
   }
@@ -218,6 +233,7 @@ class Annotations extends React.Component {
         {Object.values(annotationStore).map(
           ({ x, y, isOpen, id, content, isEditing }) => (
             <Annotation
+              // Should we just pass down the entire annotation?
               key={`marker-${id}`}
               x={x}
               y={y}
@@ -254,7 +270,12 @@ class Annotations extends React.Component {
                     Delete
                   </DeleteButton>
 
-                  <SaveButton type='button'>Save</SaveButton>
+                  <SaveButton
+                    type='button'
+                    onClick={this.handleSaveAnnotation(id)}
+                  >
+                    Save and Close
+                  </SaveButton>
                 </ButtonContainer>
               </Tooltip>
             </Annotation>

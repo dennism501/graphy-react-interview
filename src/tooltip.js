@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components'
 
 import { MARKER_SIZE } from './marker'
 
-const TOOLTIP_SIZE = 125
+const TOOLTIP_SIZE = 150
 
 const Tooltip = styled.div`
   position: relative;
