@@ -6,9 +6,8 @@ export const Button = styled.button`
   padding: 0;
   margin: 0;
   background: transparent;
-  padding: 10px;
   border-radius: 3px;
-  transition: all 0.2s;
+  transition: all 0.2s ease;
 `
 
 export const DeleteButton = styled(Button)`
@@ -28,6 +27,7 @@ export const SaveButton = styled(Button)`
   font-weight: bold;
   text-align: center;
   flex: 1;
+  padding: 10px;
 
   &:hover {
     background: #21825b;
