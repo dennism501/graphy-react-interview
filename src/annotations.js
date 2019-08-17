@@ -128,7 +128,7 @@ class Annotations extends React.Component {
     if (annotation.isEditing) return
 
     // No need to update the state if the annotation's tooltip is already closed
-    if (annotation.isOpen === false) return
+    if (!annotation.isOpen) return
 
     annotation.isOpen = false
 
