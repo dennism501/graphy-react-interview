@@ -77,14 +77,17 @@ Tests and linting are both run on the pre-commit hook. Pass `--no-verify` to `gi
 
 Deployed to [https://graphy-react-interview.scottwarren.dev/]() via Netlify.
 
-Requires `netlify-cli` package to be installed globally (`yarn global add netlify-cli` or `npm install -g netlify-cli`).
-
 To deploy:
 
 * Run a build: `yarn run build` or `npm run build`
 * Deploy:
-  * To a pre-production/preview/staging environment: `netlify deploy`
-  * To production: `netlify deploy --prod`
+  * To a pre-production/preview/staging environment: `npx ntl deploy`
+  * To production: `npx ntl deploy --prod`
+
+OR, just run:
+
+Preview: `yarn run deploy`
+Production: `yarn run deploy:prod`
 
 ### Data Structure
 
