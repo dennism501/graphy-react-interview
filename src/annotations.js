@@ -129,7 +129,7 @@ class Annotations extends React.Component {
     })
   }
 
-  handleEditClick(ev, id) {
+  handleAnnotationContentClick(ev, id) {
     ev.stopPropagation()
 
     const annotation = this.state.annotationStore[id]
@@ -222,7 +222,7 @@ class Annotations extends React.Component {
                   Edit Annotation
                 </TooltipTitle>
                 <AnnotationContentContainer
-                  onClick={ev => this.handleEditClick(ev, id)}
+                  onClick={ev => this.handleAnnotationContentClick(ev, id)}
                   data-testid='annotation-content-container'
                 >
                   {isEditing && (
