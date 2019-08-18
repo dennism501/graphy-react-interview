@@ -108,7 +108,7 @@ class Annotations extends React.Component {
     const newContent = ev.target.value
     const annotation = this.state.annotationStore[id]
 
-    let { isEditing, isOpen } = annotation
+    let { isEditing } = annotation
 
     // If they didn't change the content, we can assume they've finished editing the annotation
     // We cannot close the annotation here, otherwise the "create annotation" event will occur
@@ -123,7 +123,6 @@ class Annotations extends React.Component {
           ...annotation,
           content: newContent,
           isEditing,
-          isOpen,
         },
       },
     })
