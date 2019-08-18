@@ -14,6 +14,7 @@ export const AnnotationEditor = styled.textarea`
   transition: 0.2s all ease;
   outline: 0;
   padding: 10px;
+  resize: none;
 
   &:focus {
     outline: 0;
