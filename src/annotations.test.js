@@ -178,6 +178,7 @@ describe('Annotations', () => {
 
   test('annotation content click should go from not editing to editing', async () => {
     const { getByTestId } = render(<Annotations />)
+
     fireEvent.click(await getByTestId('container'), {
       pageX: 100,
       pageY: 100,
@@ -193,5 +194,38 @@ describe('Annotations', () => {
 
     expect(await getByTestId('tooltip')).toBeVisible()
     expect(await getByTestId('annotation-editor')).toBeVisible()
+  })
+
+  test('opening a marker if the marker is not being edited currently', async () => {
+    const { queryAllByTestId, getByTestId } = render(<Annotations />)
+
+    fireEvent.click(await getByTestId('container'), {
+      pageX: 100,
+      pageY: 100,
+    })
+
+    // Closing the annotation
+    fireEvent.click(await getByTestId('save-annotation'))
+
+    expect(await queryAllByTestId('marker')).toHaveLength(1)
+    expect(await getByTestId('tooltip')).not.toBeVisible()
+
+    fireEvent.click(await getByTestId('marker'))
+    expect(await getByTestId('tooltip')).toBeVisible()
+  })
+
+  test('Not closing the tooltip unnecessarrily', async () => {
+    const { getByTestId } = render(<Annotations />)
+
+    fireEvent.click(await getByTestId('container'), {
+      pageX: 100,
+      pageY: 100,
+    })
+
+    fireEvent.click(await getByTestId('save-annotation'))
+    expect(await getByTestId('tooltip')).not.toBeVisible()
+
+    fireEvent.mouseLeave(await getByTestId('marker'))
+    expect(await getByTestId('tooltip')).not.toBeVisible()
   })
 })
