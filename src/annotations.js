@@ -1,13 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
-import { uniqueId } from 'lodash'
 
 import Marker from './marker'
 import Annotation, { AnnotationEditor, AnnotationContent } from './annotation'
 import { DeleteButton, SaveButton, ButtonContainer } from './buttons'
 import Tooltip, { TooltipTitle } from './tooltip'
-
-const ID_PREFIX = 'annotation_'
 
 // TODO: implement Tooltip out of bounds check:
 // if body.width < (tooltipwidth + padding + tooltip.x)
@@ -24,6 +21,8 @@ const AnnotationContentContainer = styled.div`
   flex: 1;
   display: flex;
 `
+
+let currentId = 0
 
 const createNewAnnotation = ({ x, y, id }) => ({
   x,
@@ -46,7 +45,7 @@ class Annotations extends React.Component {
   handleSelection = ev => {
     const { pageX: x, pageY: y } = ev
 
-    const id = uniqueId(ID_PREFIX)
+    const id = currentId++
 
     this.setState({
       annotationStore: {
