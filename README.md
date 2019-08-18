@@ -1,6 +1,6 @@
 ![Graphy Careers](https://graphy-static.ams3.cdn.digitaloceanspaces.com/careers-alt.png)
 
-# annotips.js ⤴️
+# annotips.js ⤴️🏏
 
 Place Annotations anywhere!
 
