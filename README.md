@@ -8,12 +8,12 @@ Place Annotations anywhere!
 
 ### Features
 
-Supports ability to place annotations anywhere on the page.
-Upon creation of an annotation, a marker is placed where the user clicked to indicate the position of the annotation
-Supports ability to delete a previously placed annotation
-Supports ability to edit a previously placed annotation
-Shows/hides annotation on hover (doesn't hide when a user is editing the contents of the annotation)
-Mobile friendly (tested on iOS Safari on an iPhone 7 plus) (although the markers aren't big enough to be touch friendly)
+* Supports ability to place annotations anywhere on the page.
+* Upon creation of an annotation, a marker is placed where the user clicked to indicate the position of the annotation
+* Supports ability to delete a previously placed annotation
+* Supports ability to edit a previously placed annotation
+* Shows/hides annotation on hover (doesn't hide when a user is editing the contents of the annotation)
+* Mobile friendly (tested on iOS Safari on an iPhone 7 plus) (although the markers aren't big enough to be touch friendly)
 
 Markers in close proximity work:
 
@@ -27,7 +27,7 @@ an overlapping marker appear on top of the sibling marker.
 * Does not handle browser resizing.
 * Would like to make this more re-usable, where you would add the annotations component as a child of a block element that
   you want to be able to add annotations to, and it would work. You'd be able to only add annotations within the bounds
-  of that element, and it would be self contain all of the annotations.
+  of that element, and it would self contain all of the annotations.
 * Does no collision testing currently (i.e. if an annotation is outside of the contents of the body, we should display it in a different way)
 * Does not handle long unbroken text very well (essentially just hides it)
 
