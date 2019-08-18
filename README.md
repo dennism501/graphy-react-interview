@@ -4,6 +4,8 @@
 
 Place Annotations anywhere!
 
+Original brief here 👉 [Original Brief](README.original.md)
+
 [See online here](https://graphy-react-interview.scottwarren.dev/)
 
 ### Features
