@@ -41,12 +41,11 @@ an overlapping marker appear on top of the sibling marker.
 
 If given more time, or this was something I was developing for work, I would use an external library where possible (Annotations, Tooltips, etc). If using a library remains off the table, I would likely investigate solutions on the market to see what things I can learn from (including but not limited to the API usage, the style choices, the overall UX of the annotations, etc).
 
-* I would love to get this in front of a user so confirm the UX of editing/deleting/usage.
+* I would love to get this in front of a user to confirm the UX of editing/deleting/usage.
 * Handle implementations on graphs and more "real world" use cases.
-* Componentise the annotations component in a more re-usable way.
 * Improve how long pieces of text get handled inside the annotations
 * Would add rich text editing (ability to write in Markdown)
-* Expansion of the Annotations API:
+* Componentise the annotations component in a more re-usable way, i.e. expand of the Annotations API:
   * Ability to choose from a predesigned subset of Markers
   * Ability to supply a custom Marker
   * Custom callbacks for different events
