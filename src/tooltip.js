@@ -16,7 +16,7 @@ const Tooltip = styled.div`
   text-overflow: ellipsis;
   flex-direction: column;
   padding: 10px;
-  border-radius: 2px;
+  border-radius: 3px;
   /* Using min height/width so the user can resize the textarea */
   min-height: ${TOOLTIP_HEIGHT}px;
   min-width: ${TOOLTIP_WIDTH}px;
