@@ -175,4 +175,23 @@ describe('Annotations', () => {
     expect(await queryAllByTestId('tooltip')[0]).not.toBeVisible()
     expect(await queryAllByTestId('tooltip')[1]).toBeVisible()
   })
+
+  test('annotation content click should go from not editing to editing', async () => {
+    const { getByTestId } = render(<Annotations />)
+    fireEvent.click(await getByTestId('container'), {
+      pageX: 100,
+      pageY: 100,
+    })
+
+    // Deactivate 'editing' the annotation, but keep the tooltip open
+    fireEvent.blur(await getByTestId('annotation-editor'))
+    fireEvent.click(await getByTestId('annotation-title'))
+    expect(await getByTestId('tooltip')).toBeVisible()
+
+    // Click to edit again
+    fireEvent.click(await getByTestId('annotation-content-container'))
+
+    expect(await getByTestId('tooltip')).toBeVisible()
+    expect(await getByTestId('annotation-editor')).toBeVisible()
+  })
 })
