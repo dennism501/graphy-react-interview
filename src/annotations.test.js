@@ -151,4 +151,28 @@ describe('Annotations', () => {
     expect(await queryAllByTestId('tooltip')).toHaveLength(2)
     expect(await queryAllByTestId('marker')).toHaveLength(2)
   })
+
+  test('hover over a marker', async () => {
+    const { queryAllByTestId, getByTestId } = render(<Annotations />)
+
+    // Create two markers
+    fireEvent.click(await getByTestId('container'), {
+      pageX: 100,
+      pageY: 100,
+    })
+    fireEvent.click(await getByTestId('container'), {
+      pageX: 5,
+      pageY: 5,
+    })
+    expect(await queryAllByTestId('marker')).toHaveLength(2)
+
+    // Open the first one
+    fireEvent.mouseEnter(await queryAllByTestId('marker')[0])
+    expect(await queryAllByTestId('tooltip')).toHaveLength(2)
+
+    fireEvent.mouseLeave(await queryAllByTestId('marker')[0])
+
+    expect(await queryAllByTestId('tooltip')[0]).not.toBeVisible()
+    expect(await queryAllByTestId('tooltip')[1]).toBeVisible()
+  })
 })
