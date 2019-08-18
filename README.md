@@ -35,19 +35,18 @@ an overlapping marker appear on top of the sibling marker.
 
 ### The Future/If I had more time
 
-If given more time, or this was something I was developing for work I would use an external library where possible (Annotations, Tooltips, etc). If using a library remains off the table, I would likely investigate solutions on the market to see what things I can learn from (including but not limited to the API usage, the style choices, the overall UX of the annotations, etc).
+If given more time, or this was something I was developing for work, I would use an external library where possible (Annotations, Tooltips, etc). If using a library remains off the table, I would likely investigate solutions on the market to see what things I can learn from (including but not limited to the API usage, the style choices, the overall UX of the annotations, etc).
 
 * I would love to get this in front of a user so confirm the UX of editing/deleting/usage.
 * Handle implementations on graphs and more "real world" use cases.
-* Add more tests, and very likely try and componentise the annotations component in a more re-usable way.
-* Improve how long texts gets handled inside the annotations
+* Componentise the annotations component in a more re-usable way.
+* Improve how long pieces of text get handled inside the annotations
 * Would add rich text editing (ability to write in Markdown)
 * Expansion of the Annotations API:
   * Ability to choose from a predesigned subset of Markers
   * Ability to supply a custom Marker
   * Custom callbacks for different events
-* The annotations do not persist between page loads. The assumption being is that in the real world, there would be an API to save the annotations for retrieval later.
-* Persistence to localstorage (so that if the API request to save the annotations fails, the user doesn't lose their annotations)
+* The annotations do not persist between page loads. Would like to add persistence to localstorage (so that if the API request to save the annotations fails, the user doesn't lose their annotations)
 * Handle collision of bounding box (i.e. the browser viewport)
 
 ### Local setup
@@ -91,7 +90,8 @@ Production: `yarn run deploy:prod`
 
 ### Data Structure
 
-I am storing an object of the annotation objects (where the key is a unique ID), which contains the x/y of the original click, which is where I add the marker
+I am storing an object of the annotation objects (where the key is a unique ID), which contains the x/y of the original click, which is where I add the marker.
+
 Using an object of annotations instead of array for ease of access, since the order of markers don't matter.
 
 Data structure for an Annotation:
