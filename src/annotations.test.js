@@ -69,6 +69,26 @@ describe('Annotations', () => {
     expect(await queryAllByTestId('marker')).toHaveLength(0)
     expect(await queryAllByTestId('tooltip')).toHaveLength(0)
   })
+
+  test('closing an annotation', async () => {
+    const { queryAllByTestId, queryByTestId, getByTestId } = render(
+      <Annotations />
+    )
+
+    fireEvent.click(await getByTestId('container'), {
+      pageX: 100,
+      pageY: 100,
+    })
+
+    fireEvent.click(await getByTestId('marker'))
+
+    expect(await queryAllByTestId('tooltip')).toHaveLength(1)
+
+    fireEvent.click(await getByTestId('save-annotation'))
+
+    expect(await queryAllByTestId('marker')).toHaveLength(1)
+    expect(await queryByTestId('tooltip')).not.toBeVisible()
+  })
   // test('editing an annotation', async () => {})
   // test('closing the annotation when <x>', async () => {})
   // test('opening the annotation when <y>', async () => {})
