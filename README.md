@@ -10,6 +10,7 @@ Original brief here 👉 [Original Brief](README.original.md)
 
 ### Features
 
+* 100% test coverage 💯⚡️✨
 * Supports ability to place annotations anywhere on the page.
 * Upon creation of an annotation, a marker is placed where the user clicked to indicate the position of the annotation
 * Supports ability to delete a previously placed annotation
