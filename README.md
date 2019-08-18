@@ -52,6 +52,9 @@ If given more time, or this was something I was developing for work, I would use
 * The annotations do not persist between page loads. Would like to add persistence to localstorage (so that if the API request to save the annotations fails, the user doesn't lose their annotations)
 * Handle collision of bounding box (i.e. the browser viewport)
 * Much better touch screen support and UX
+* Think about whether using a state managment library makes sense for this (i.e. Redux)
+* Think about using React Hooks and Context to simplify implementation
+* Seperate the management of annotations (`annotationStore`) and the rendering of annotations into individual an class (for management of annotations) and functional components, to simplify the annotations.js code
 
 ### Local setup
 
