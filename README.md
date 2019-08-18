@@ -17,7 +17,7 @@ Original brief here 👉 [Original Brief](README.original.md)
 * Supports ability to delete a previously placed annotation
 * Supports ability to edit a previously placed annotation
 * Shows/hides annotation on hover (doesn't hide when a user is editing the contents of the annotation)
-* Somewhat Mobile friendly
+* Somewhat mobile friendly
   * Tested on iOS Safari on an iPhone 7 plus
   * The markers aren't really touch friendly
   * The overall UX for mobile devices isn't great:
@@ -33,10 +33,8 @@ an overlapping marker appear on top of the sibling marker.
 ### Limitations
 
 * Does not handle browser resizing.
-* Would like to make this more re-usable, where you would add the annotations component as a child of a block element that
-  you want to be able to add annotations to, and it would work. You'd be able to only add annotations within the bounds
-  of that element, and it would self contain all of the annotations.
-* Does no collision testing currently (i.e. if an annotation is outside of the contents of the body, we should display it in a different way)
+* Would like to make this more re-usable, where you would add the annotations component to a component (i.e. a graph), and then you'll be able to add annotations to that graph out of the box
+* Currently there is no collision detection (i.e. if an annotation is outside of the contents of the body (or the parent container), we should display it in a different way)
 * Does not handle long unbroken text very well (essentially just hides it)
 
 ### The Future/If I had more time
@@ -46,17 +44,17 @@ If given more time, or this was something I was developing for work, I would use
 * I would love to get this in front of a user to confirm the UX of editing/deleting/usage.
 * Handle implementations on graphs and more "real world" use cases.
 * Improve how long pieces of text get handled inside the annotations
-* Would add rich text editing (ability to write in Markdown)
-* Componentise the annotations component in a more re-usable way, i.e. expand of the Annotations API:
+* Add rich text editing (ability to write in Markdown)
+* Make the annotations component more re-usable, i.e. expansion of the Annotations API:
   * Ability to choose from a predesigned subset of Markers
   * Ability to supply a custom Marker
   * Custom callbacks for different events
 * The annotations do not persist between page loads. Would like to add persistence to localstorage (so that if the API request to save the annotations fails, the user doesn't lose their annotations)
-* Handle collision of bounding box (i.e. the browser viewport)
-* Much better touch screen support and UX
+* Handle collision of bounding/parent container (i.e. the browser viewport)
+* Improve the touch screen support and UX
 * Think about whether using a state managment library makes sense for this (i.e. Redux)
 * Think about using React Hooks and Context to simplify implementation
-* Seperate the management of annotations (`annotationStore`) and the rendering of annotations into individual an class (for management of annotations) and functional components, to simplify the annotations.js code
+* Seperate the management of annotations (`annotationStore`) and the rendering of annotations into a 'Annotation manager' class (for management of annotations) and functional components, to simplify the annotations.js code
 
 ### Local setup
 
