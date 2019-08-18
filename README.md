@@ -15,7 +15,12 @@ Original brief here 👉 [Original Brief](README.original.md)
 * Supports ability to delete a previously placed annotation
 * Supports ability to edit a previously placed annotation
 * Shows/hides annotation on hover (doesn't hide when a user is editing the contents of the annotation)
-* Mobile friendly (tested on iOS Safari on an iPhone 7 plus) (although the markers aren't big enough to be touch friendly)
+* Somewhat Mobile friendly
+  * Tested on iOS Safari on an iPhone 7 plus
+  * The markers aren't really touch friendly
+  * The overall UX for mobile devices isn't great:
+    * The page zooms in when editing/adding a tooltip
+    * To close/escape an annotation that's in editing mode, you usually end up creating another one
 
 Markers in close proximity work:
 
