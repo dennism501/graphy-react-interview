@@ -53,6 +53,7 @@ If given more time, or this was something I was developing for work, I would use
   * Custom callbacks for different events
 * The annotations do not persist between page loads. Would like to add persistence to localstorage (so that if the API request to save the annotations fails, the user doesn't lose their annotations)
 * Handle collision of bounding box (i.e. the browser viewport)
+* Much better touch screen support and UX
 
 ### Local setup
 
