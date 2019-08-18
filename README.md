@@ -11,8 +11,8 @@ Original brief here 👉 [Original Brief](README.original.md)
 ### Features
 
 * 100% test coverage 💯⚡️✨
-* Tested and working on modern browsers (Chrome, Edge, Firefox, Safari)
-* Supports ability to place annotations anywhere on the page.
+* Tested and working on modern browsers (Chrome, Edge, Firefox, Safari) 👀🦊
+* Supports ability to place annotations anywhere on the page
 * Upon creation of an annotation, a marker is placed where the user clicked to indicate the position of the annotation
 * Supports ability to delete a previously placed annotation
 * Supports ability to edit a previously placed annotation
@@ -27,8 +27,7 @@ Original brief here 👉 [Original Brief](README.original.md)
 
 With a somewhat naive approach, I have tried to address usage of markers that are close to each other with layering.
 
-On hover, I set the z-index of the marker to a higher value than the normal marker, which makes a marker that's underneath
-an overlapping marker appear on top of the sibling marker.
+On hover, I set the z-index of the marker to a higher value than the normal marker, which makes a marker that's underneath an overlapping marker appear on top of the sibling marker.
 
 ### Limitations
 
@@ -52,9 +51,9 @@ If given more time, or this was something I was developing for work, I would use
 * The annotations do not persist between page loads. Would like to add persistence to localstorage (so that if the API request to save the annotations fails, the user doesn't lose their annotations)
 * Handle collision of bounding/parent container (i.e. the browser viewport)
 * Improve the touch screen support and UX
-* Think about whether using a state managment library makes sense for this (i.e. Redux)
+* Think about whether using a state management library makes sense for this (i.e. Redux)
 * Think about using React Hooks and Context to simplify implementation
-* Seperate the management of annotations (`annotationStore`) and the rendering of annotations into a 'Annotation manager' class (for management of annotations) and functional components, to simplify the annotations.js code
+* Seperate the management of annotations (`annotationStore`) and the rendering of annotations into an 'Annotation manager' class (for management of annotations) and functional components, to simplify the annotations.js code
 
 ### Local setup
 
@@ -81,7 +80,7 @@ Tests and linting are both run on the pre-commit hook. Pass `--no-verify` to `gi
 
 ### Deployment
 
-Deployed to [https://graphy-react-interview.scottwarren.dev/]() via Netlify.
+Deployed to [https://graphy-react-interview.scottwarren.dev/]() via [Netlify](https://www.netlify.com/).
 
 To deploy:
 
@@ -93,6 +92,7 @@ To deploy:
 OR, just run:
 
 Preview: `yarn run deploy`
+
 Production: `yarn run deploy:prod`
 
 ### Data Structure
