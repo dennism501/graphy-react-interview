@@ -21,8 +21,7 @@ Original brief here 👉 [Original Brief](README.original.md)
   * The overall UX for mobile devices isn't great:
     * The page zooms in when editing/adding a tooltip
     * To close/escape an annotation that's in editing mode, you usually end up creating another one
-
-Markers in close proximity work:
+* Markers in close proximity work:
 
 With a somewhat naive approach, I have tried to address usage of markers that are close to each other with layering.
 
