@@ -226,9 +226,12 @@ class Annotations extends React.Component {
               />
 
               <Tooltip isOpen={isOpen} data-testid='tooltip'>
-                <TooltipTitle>Edit Annotation</TooltipTitle>
+                <TooltipTitle data-testid='annotation-title'>
+                  Edit Annotation
+                </TooltipTitle>
                 <AnnotationContentContainer
                   onClick={ev => this.handleEditClick(ev, id)}
+                  data-testid='annotation-content-container'
                 >
                   {isEditing && (
                     <AnnotationEditor
