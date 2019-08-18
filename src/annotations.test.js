@@ -151,8 +151,4 @@ describe('Annotations', () => {
     expect(await queryAllByTestId('tooltip')).toHaveLength(2)
     expect(await queryAllByTestId('marker')).toHaveLength(2)
   })
-
-  // test('editing an annotation', async () => {})
-  // test('closing the annotation when <x>', async () => {})
-  // test('opening the annotation when <y>', async () => {})
 })
