@@ -8,7 +8,7 @@ Original brief here 👉 [Original Brief](README.original.md)
 
 [See online here](https://graphy-react-interview.scottwarren.dev/)
 
-[![Actions Status](https://github.com/scottwarren/graphy-react-interview/workflows/Linting and tests/badge.svg)](https://github.com/scottwarren/graphy-react-interview/actions)
+![Actions Status](https://github.com/scottwarren/graphy-react-interview/workflows/Linting and tests/badge.svg)(https://github.com/scottwarren/graphy-react-interview/actions)
 
 ### Features
 
