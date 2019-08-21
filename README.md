@@ -8,6 +8,8 @@ Original brief here 👉 [Original Brief](README.original.md)
 
 [See online here](https://graphy-react-interview.scottwarren.dev/)
 
+[![Actions Status](https://github.com/{owner}/{repo}/workflows/{workflow_name}/badge.svg)](https://github.com/{owner}/{repo}/actions)
+
 ### Features
 
 * 100% test coverage 💯⚡️✨
