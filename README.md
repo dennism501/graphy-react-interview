@@ -6,7 +6,7 @@ Place Annotations anywhere!
 
 Original brief here 👉 [Original Brief](README.original.md)
 
-[See online here](https://graphy-react-interview.scottwarren.dev/)
+[See online here](https://graphy-react-interview.netlify.app/)
 
 [![Actions Status](https://github.com/scottwarren/graphy-react-interview/workflows/Linting%20and%20tests/badge.svg)](https://github.com/scottwarren/graphy-react-interview/actions)
 
@@ -82,7 +82,7 @@ Tests and linting are both run on the pre-commit hook. Pass `--no-verify` to `gi
 
 ### Deployment
 
-Deployed to [https://graphy-react-interview.scottwarren.dev/]() via [Netlify](https://www.netlify.com/).
+Deployed to [https://graphy-react-interview.netlify.app/]() via [Netlify](https://www.netlify.com/).
 
 To deploy:
 
